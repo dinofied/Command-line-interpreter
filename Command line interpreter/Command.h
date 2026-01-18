@@ -14,9 +14,12 @@ public:
 
 	virtual void execute();
 	string toString();
+	bool isLastArgFile();
+
 
 	virtual string getName();
 	virtual vector<string> getArgs();
+
 
 private:
 
@@ -24,7 +27,6 @@ protected:
 	string commandName;
 	vector<string> commandArgs;
 	int charCount;
-	bool argIsFile;
 
 	//pri trazenju gresaka njihov indeks se upisuje ovde
 	vector<int> errPlaces;
@@ -32,7 +34,6 @@ protected:
 
 	Command(string commandName, vector<string> commandArgs, int charCount) {
 		errPlaces = {};
-		argIsFile = false;
 		this->commandName = commandName;
 		this->commandArgs = commandArgs;
 		this->charCount = charCount;

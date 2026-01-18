@@ -4,7 +4,7 @@ void CommandLineInterpreter::run() {
 
 	std::ifstream file("cmdTests.txt");
 	if (!file) {
-		cout << "nema fajla" << endl;
+		cout << "Fajl nije pronadjen." << endl;
 		return;
 	}
 	string temp;

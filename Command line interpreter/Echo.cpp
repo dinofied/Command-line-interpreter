@@ -1,11 +1,27 @@
 #include "Echo.h"
 #include <iostream>
+#include <fstream>
 using namespace std;
 
 
 void Echo::runCommand() {
 
-	std::cout << trimmedBody() << std::endl;
+	if (isLastArgFile()) {
+		std::ifstream file(commandArgs[0]);
+		if (!file) {
+			cout << "Fajl nije pronadjen:" << endl;
+			cout << toString() << endl;
+
+			return;
+		}
+		string temp;
+
+		while (std::getline(file, temp)) {
+			cout << temp << endl;
+		}
+		
+	}
+	else std::cout << trimmedBody() << std::endl;
 
 }
 
@@ -26,7 +42,9 @@ void Echo::errReport() {
 };
 
 bool Echo::isValidBody() {
-	if (commandArgs.size() != 1 ) return false;
+	if (commandArgs.size() != 1) return false;
+	if (isLastArgFile()) return true;
+
 	int l = -1, r = -1;
 
 	for (int i = 0; i < commandArgs[0].size(); i++) {

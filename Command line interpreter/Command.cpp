@@ -38,6 +38,16 @@ string Command::toString() {
 	return cmd;
 }
 
+bool Command::isLastArgFile() {
+	int lastArgSize = commandArgs[commandArgs.size() - 1].size();
+	if (lastArgSize < 4) return false;
+
+	string end = commandArgs[commandArgs.size() - 1].substr(lastArgSize - 4, lastArgSize - 1);
+	if (end == ".txt") return true;
+
+	return false;
+}
+
 string Command::getName() {
 	return commandName;
 }
