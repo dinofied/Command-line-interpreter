@@ -6,6 +6,7 @@ echo
 echo "solaja" a
 echo sdsd sds
 echo 	"tab"
+echo dssd"sddsds
 dssd	
 echo solaja.txt
 echo solaja solaja.txt

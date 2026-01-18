@@ -44,6 +44,7 @@ void wordCount::runCommand() {
 
 };
 
+//checks the validity of command arguments
 bool wordCount::isValidBody() {
 	if (commandArgs.size() != 2) return false;
 	if (commandArgs[0] != "-w" && commandArgs[0] != "-c") return false;
@@ -52,6 +53,8 @@ bool wordCount::isValidBody() {
 	return false;
 };
 
+
+//reports the type of error
 void wordCount::errReport() {
 
 	if (commandArgs.size() > 2) {
@@ -71,5 +74,3 @@ bool wordCount::determineMode() {
 	if (commandArgs[0] == "-w") return false;
 	return true;
 };
-
-string trimmedBody();

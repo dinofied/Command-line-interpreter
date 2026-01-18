@@ -2,9 +2,8 @@
 
 //notes:
 
-
 int main() {
 
-	CommandLineInterpreter::terminalInstance().run();
+	CommandLineInterpreter::terminalInstance().run(std::cin);
 	
 }

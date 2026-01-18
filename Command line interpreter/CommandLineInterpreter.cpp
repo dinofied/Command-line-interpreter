@@ -1,22 +1,24 @@
 #include "CommandLineInterpreter.h"
 
-void CommandLineInterpreter::run() {
+void CommandLineInterpreter::run(std::istream& stream) {
 
-	std::ifstream file("cmdTests.txt");
-	if (!file) {
+	if (!stream) {
 		cout << "Fajl nije pronadjen." << endl;
 		return;
 	}
 	string temp;
 
-	while (std::getline(file, temp)) {
-		cout << CommandLineInterpreter::terminalInstance().getReadySign() << " ";
+	cout << CommandLineInterpreter::terminalInstance().getReadySign() << " ";
+	while (std::getline(cin, temp)) {
+		
 
 		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), Lexer::lexerInstance().getCharCount());
 		if (!newCmd) continue;
 		else newCmd->execute();
 
 		delete newCmd;
+		cout << endl;
+		cout << CommandLineInterpreter::terminalInstance().getReadySign() << " ";
 	}
 }
 

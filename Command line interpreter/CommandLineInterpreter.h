@@ -15,7 +15,7 @@ public:
 		return instance;
 	}
 
-	void run();
+	void run(std::istream& stream);
 
 	string getReadySign();
 	void setReadySign(string input);
