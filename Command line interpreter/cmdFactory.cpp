@@ -16,6 +16,9 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	if (commandName == "time") {
 		return (Time*) new Time(commandName, commandArgs, charCount);
 	}
+	if (commandName == "date") {
+		return (Date*) new Date(commandName, commandArgs, charCount);
+	}
 
 	nameDoesntExsist(commandName, commandArgs);
 	return nullptr;

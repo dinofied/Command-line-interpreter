@@ -1,7 +1,21 @@
 #include "Time.h"
 
 void Time::runCommand() {
-	
+	std::time_t now = std::time(nullptr);
+	std::tm localTime{};
+	localtime_s(&localTime, &now);
+
+	auto print2digits = [](int n) {
+		if (n < 10) std::cout << '0';
+		std::cout << n;
+		};
+
+	print2digits(localTime.tm_hour);
+	std::cout << ':';
+	print2digits(localTime.tm_min);
+	std::cout << ':';
+	print2digits(localTime.tm_sec);
+	std::cout << '\n';
 
 };
 

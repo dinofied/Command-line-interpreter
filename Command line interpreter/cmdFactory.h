@@ -3,6 +3,9 @@
 #include <vector>
 #include "Echo.h"
 #include "Time.h"
+#include "Date.h"
+#include "Touch.h"
+#include "wordCount.h"
 
 using namespace std;
 class commandFactory {
