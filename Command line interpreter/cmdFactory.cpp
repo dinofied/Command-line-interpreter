@@ -23,7 +23,7 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 		return (wordCount*) new wordCount(commandName, commandArgs, charCount);
 	}
 	if (commandName == "touch") {
-		//return (Touch*) new Touch(commandName, commandArgs, charCount);
+		return (Touch*) new Touch(commandName, commandArgs, charCount);
 	}
 	
 

@@ -22,3 +22,7 @@ wc -c "solaja andreja"
 wc -w helloWorlds.txt
 wc -c helloWorlds.txt
 wc -w andrej.txt
+touch
+touch helloWorlds.txt
+touch solaja.txt
+touch solaja.txt
