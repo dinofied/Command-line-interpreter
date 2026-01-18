@@ -16,3 +16,9 @@ time solaja.txt
 time "solaja"
 date
 date solaja
+wc -w
+wc -w "solaja andreja"
+wc -c "solaja andreja"
+wc -w helloWorlds.txt
+wc -c helloWorlds.txt
+wc -w andrej.txt

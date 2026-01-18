@@ -7,7 +7,7 @@ using namespace std;
 void Echo::runCommand() {
 
 	if (isLastArgFile()) {
-		std::ifstream file(commandArgs[0]);
+		std::ifstream file(commandArgs[commandArgs.size() - 1]);
 		if (!file) {
 			cout << "Fajl nije pronadjen:" << endl;
 			cout << toString() << endl;
@@ -19,9 +19,12 @@ void Echo::runCommand() {
 		while (std::getline(file, temp)) {
 			cout << temp << endl;
 		}
+
+		file.clear();
+		file.seekg(0, std::ios::beg);
 		
 	}
-	else std::cout << trimmedBody() << std::endl;
+	else std::cout << Command::trimmedBody() << std::endl;
 
 }
 
@@ -43,28 +46,7 @@ void Echo::errReport() {
 
 bool Echo::isValidBody() {
 	if (commandArgs.size() != 1) return false;
-	if (isLastArgFile()) return true;
-
-	int l = -1, r = -1;
-
-	for (int i = 0; i < commandArgs[0].size(); i++) {
-		if (commandArgs[0][i] == '"' && l != -1 && r == -1) r = i;
-		if (commandArgs[0][i] == '"' && l == -1) l = i;
-	}
-	
-	for (int i = 0; i < commandArgs[0].size(); i++) {
-		if (i < l || i > r) errPlaces.push_back(i + 1 + commandName.size());
-	}
-
-	if (errPlaces.empty()) {
-		return true;
-	}
+	if (Command::isLastArgFile()) return true;
+	if (Command::isLastArgText()) return true;
 	return false;
 };
-
-
-string Echo::trimmedBody() {
-	string trimmed = "";
-	for (int i = 1; i < commandArgs[0].size() - 1; i++) trimmed += commandArgs[0][i];
-	return trimmed;
-}

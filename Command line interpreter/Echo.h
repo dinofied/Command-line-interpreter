@@ -14,6 +14,4 @@ private:
 	virtual bool isValidBody();
 
 	virtual void errReport();
-
-	string trimmedBody();
 };

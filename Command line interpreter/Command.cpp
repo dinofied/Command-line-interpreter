@@ -48,6 +48,30 @@ bool Command::isLastArgFile() {
 	return false;
 }
 
+bool Command::isLastArgText() {
+	int l = -1, r = -1;
+	int lastArgId = commandArgs.size() - 1;
+
+	for (int i = 0; i < commandArgs[lastArgId].size(); i++) {
+		if (commandArgs[lastArgId][i] == '"' && l != -1 && r == -1) r = i;
+		if (commandArgs[lastArgId][i] == '"' && l == -1) l = i;
+	}
+
+	for (int i = 0; i < commandArgs[lastArgId].size(); i++) {
+		if (i < l || i > r) errPlaces.push_back(i + 1 + commandName.size());
+	}
+
+	if (errPlaces.empty()) {
+		return true;
+	}
+}
+
+string Command::trimmedBody() {
+	string trimmed = "";
+	for (int i = 1; i < commandArgs[commandArgs.size() - 1].size() - 1; i++) trimmed += commandArgs[commandArgs.size() - 1][i];
+	return trimmed;
+}
+
 string Command::getName() {
 	return commandName;
 }

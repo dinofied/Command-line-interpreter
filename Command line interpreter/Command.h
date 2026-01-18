@@ -15,6 +15,7 @@ public:
 	virtual void execute();
 	string toString();
 	bool isLastArgFile();
+	bool isLastArgText();
 
 
 	virtual string getName();
@@ -45,8 +46,9 @@ protected:
 
 	virtual void errReport() = 0;
 
-	//gnerican ispis znakova "^" ispod greski
+	//genericne funkcije
 	void errPlacesReport();
+	string trimmedBody();
 
 };
 

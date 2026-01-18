@@ -19,6 +19,13 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	if (commandName == "date") {
 		return (Date*) new Date(commandName, commandArgs, charCount);
 	}
+	if (commandName == "wc") {
+		return (wordCount*) new wordCount(commandName, commandArgs, charCount);
+	}
+	if (commandName == "touch") {
+		//return (Touch*) new Touch(commandName, commandArgs, charCount);
+	}
+	
 
 	nameDoesntExsist(commandName, commandArgs);
 	return nullptr;
