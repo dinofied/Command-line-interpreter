@@ -3,7 +3,7 @@
 
 class Echo : public Command { 
 public:
-	Echo(string commandName, vector<string> commandArgs) : Command(commandName, commandArgs) {
+	Echo(string commandName, vector<string> commandArgs, int charCount) : Command(commandName, commandArgs, charCount) {
 	
 	};
 

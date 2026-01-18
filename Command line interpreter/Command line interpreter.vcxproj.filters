@@ -19,12 +19,6 @@
     <Filter Include="Source Files\Commands.cpp">
       <UniqueIdentifier>{08dfa1e4-99eb-459d-92da-5956f335027e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Parser">
-      <UniqueIdentifier>{87df542d-d416-4d33-a9c9-2c44fe4de966}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Parser">
-      <UniqueIdentifier>{2232e520-069f-46f7-ba8e-b35a8cddf222}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\readySign">
       <UniqueIdentifier>{486cf055-66e9-489c-8699-6f410eab6cc5}</UniqueIdentifier>
     </Filter>
@@ -37,6 +31,12 @@
     <Filter Include="Header Files\Lexer">
       <UniqueIdentifier>{e309828d-bd6b-4446-83a4-7d023b1db98e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\cmdFactory">
+      <UniqueIdentifier>{2232e520-069f-46f7-ba8e-b35a8cddf222}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\cmdFactory">
+      <UniqueIdentifier>{87df542d-d416-4d33-a9c9-2c44fe4de966}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Echo.cpp">
@@ -46,7 +46,7 @@
       <Filter>Source Files\Commands.cpp</Filter>
     </ClCompile>
     <ClCompile Include="cmdFactory.cpp">
-      <Filter>Source Files\Parser</Filter>
+      <Filter>Source Files\cmdFactory</Filter>
     </ClCompile>
     <ClCompile Include="readySign.cpp">
       <Filter>Source Files\readySign</Filter>
@@ -78,7 +78,7 @@
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
     <ClInclude Include="cmdFactory.h">
-      <Filter>Header Files\Parser</Filter>
+      <Filter>Header Files\cmdFactory</Filter>
     </ClInclude>
     <ClInclude Include="readySign.h">
       <Filter>Header Files\readySign</Filter>

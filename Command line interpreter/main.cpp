@@ -20,10 +20,12 @@ int main() {
 	
 	string temp;
 
+
+
 	while (std::getline(file, temp)) {
 		cout << readySign::signInstance().getReadySign() << " ";
 
-		Command* newCmd = commandFactory::factoryInstance().createCmd(Lexer::lexerInstance().divideWords(temp));
+		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), Lexer::lexerInstance().getCharCount());
 		if (!newCmd) continue;
 		else newCmd->execute();
 

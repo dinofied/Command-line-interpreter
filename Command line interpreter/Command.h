@@ -30,12 +30,12 @@ protected:
 	vector<int> errPlaces;
 
 
-	Command(string commandName, vector<string> commandArgs) {
+	Command(string commandName, vector<string> commandArgs, int charCount) {
 		errPlaces = {};
 		argIsFile = false;
 		this->commandName = commandName;
 		this->commandArgs = commandArgs;
-		charCount = 0;
+		this->charCount = charCount;
 	};
 
 	virtual void runCommand() = 0;

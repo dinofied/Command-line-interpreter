@@ -1,7 +1,9 @@
 echo "Solaja"
 echo s"Solaja"
+echo "solaja"sss
 echo "solaja
 echo 
 echo "solaja" a
 echo sdsd sds
-dssd
+echo 	"tab"
+dssd	

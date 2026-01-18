@@ -1,33 +1,28 @@
 #include "cmdFactory.h"
 
 
-Command* commandFactory::createCmd(vector<string> words) {
+Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	if (!words.size()) {
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
 	}
-	commandName = words[0];
-	commandArgs = commandArgs = std::vector<std::string>(words.begin() + 1, words.end());
-
-
+	string commandName = words[0];
+	vector<string> commandArgs = std::vector<std::string>(words.begin() + 1, words.end());
 
 	
 	if (commandName == "echo") {
-		Echo* newCmd = new Echo(commandName, commandArgs);
-		return newCmd;
+		return (Echo*) new Echo(commandName, commandArgs, charCount);
 	}
 	if (commandName == "time") {
-		Time* newCmd = new Time(commandName, commandArgs);
-		return newCmd;
+		return (Time*) new Time(commandName, commandArgs, charCount);
 	}
 
-
-	nameDoesntExsist();
+	nameDoesntExsist(commandName, commandArgs);
 	return nullptr;
 };
 
 
-void commandFactory::nameDoesntExsist() {
+void commandFactory::nameDoesntExsist(string commandName, vector<string> commandArgs) {
 
 	cout << "Komanda ne postoji: " << endl;
 	cout << commandName << " ";

@@ -3,7 +3,7 @@
 
 class Time : public Command {
 public:
-	Time(string commandName, vector<string> commandArgs) : Command(commandName, commandArgs) {
+	Time(string commandName, vector<string> commandArgs, int charCount) : Command(commandName, commandArgs, charCount) {
 
 	};
 

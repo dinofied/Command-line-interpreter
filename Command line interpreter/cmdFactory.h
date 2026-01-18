@@ -7,18 +7,14 @@
 using namespace std;
 class commandFactory {
 public:
-	static commandFactory& factoryInstance() {
-		static commandFactory instance;
-		return instance;
-	};
-	
-	Command* createCmd(vector<string> words);
+
+	static Command* createCmd(vector<string> words, int charCount);
 
 private:
 	string commandName;
 	vector<string> commandArgs;
 
-	void nameDoesntExsist();
+	static void nameDoesntExsist(string commandName, vector<string> commandArgs);
 
 	commandFactory() {};
 

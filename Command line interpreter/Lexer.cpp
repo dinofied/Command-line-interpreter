@@ -9,10 +9,10 @@ vector<string> Lexer::divideWords(string inputLine) {
 		charCount++;
 
 		if (inputLine[i] == '"') {
-			nextQuotation(i, word, inputLine);
+			findNextQuotationMark(i, word, inputLine);
 		}
 
-		if (inputLine[i] != ' ') word += inputLine[i];
+		if (inputLine[i] != ' ' && inputLine[i] != '\t') word += inputLine[i];
 		else {
 			if (word != "") {
 				words.push_back(word);
@@ -24,7 +24,7 @@ vector<string> Lexer::divideWords(string inputLine) {
 	return words;
 }
 
-void Lexer::nextQuotation(int& iterator, string& word, string& inputLine) {
+void Lexer::findNextQuotationMark(int& iterator, string& word, string& inputLine) {
 
 	word += inputLine[iterator];
 	iterator++;
@@ -34,4 +34,9 @@ void Lexer::nextQuotation(int& iterator, string& word, string& inputLine) {
 		iterator++;
 	}
 	charCount++;
+};
+
+
+int Lexer::getCharCount() {
+	return charCount;
 };
