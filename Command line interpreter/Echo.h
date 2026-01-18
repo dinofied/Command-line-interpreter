@@ -15,5 +15,5 @@ private:
 
 	virtual void errReport();
 
-	void trimBody(int l, int r);
+	string trimmedBody();
 };

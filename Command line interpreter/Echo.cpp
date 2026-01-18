@@ -5,11 +5,8 @@ using namespace std;
 
 void Echo::runCommand() {
 
-	for (int i = 0; i < commandArgs.size(); i++) {
-		std::cout << commandArgs[i];
-		if (i != commandArgs.size() - 1) std::cout << " ";
-	}
-	std::cout << std::endl;
+	std::cout << trimmedBody() << std::endl;
+
 }
 
 
@@ -23,7 +20,7 @@ void Echo::errReport() {
 	}
 	else std::cout << "Greska pri unosu argumenata komande:" << endl;
 
-	std::cout << Command::getCommand() << std::endl;
+	std::cout << Command::toString() << std::endl;
 	Command::errPlacesReport();
 
 };
@@ -41,16 +38,15 @@ bool Echo::isValidBody() {
 		if (i < l || i > r) errPlaces.push_back(i + 1 + commandName.size());
 	}
 
-	if (errPlaces.size() == 0) {
-		trimBody(l, r);
+	if (errPlaces.empty()) {
 		return true;
 	}
 	return false;
 };
 
 
-void Echo::trimBody(int l, int r) {
+string Echo::trimmedBody() {
 	string trimmed = "";
-	for (int i = l + 1; i < r; i++) trimmed += commandArgs[0][i];
-	commandArgs[0] = trimmed;
+	for (int i = 1; i < commandArgs[0].size() - 1; i++) trimmed += commandArgs[0][i];
+	return trimmed;
 }

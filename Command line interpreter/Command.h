@@ -13,7 +13,7 @@ public:
 	virtual ~Command() = default;
 
 	virtual void execute();
-	string getCommand();
+	string toString();
 
 	virtual string getName();
 	virtual vector<string> getArgs();

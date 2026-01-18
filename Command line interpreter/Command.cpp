@@ -28,7 +28,7 @@ void Command::errPlacesReport() {
 };
 
 
-string Command::getCommand() {
+string Command::toString() {
 	string cmd = "";
 	cmd += commandName;
 	for (int i = 0; i < commandArgs.size(); i++) {
