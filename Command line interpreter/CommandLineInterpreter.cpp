@@ -12,7 +12,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 	while (std::getline(stream, temp)) {
 		
 
-		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), Lexer::lexerInstance().getCharCount());
+		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), temp.size());
 		if (newCmd) newCmd->execute();
 
 		if (!newCmd || (newCmd && (newCmd->getName() != "Batch"))) {

@@ -71,7 +71,11 @@ bool Command::isLastArgText() {
 //returns the arg without quotation marks
 string Command::trimmedBody() {
 	string trimmed = "";
-	for (int i = 1; i < commandArgs[commandArgs.size() - 1].size() - 1; i++) trimmed += commandArgs[commandArgs.size() - 1][i];
+	int it = 0;
+	int argId = commandArgs.size() - 1;
+	while (commandArgs[argId][it] != '"') it++;
+	
+	for (int i = it + 1; (i < commandArgs[argId].size() && commandArgs[argId][i] != '"'); i++) trimmed += commandArgs[argId][i];
 	return trimmed;
 }
 

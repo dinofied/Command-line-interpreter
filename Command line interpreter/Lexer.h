@@ -13,14 +13,10 @@ public:
 
 	vector<string> divideWords(string inputLine);
 	void findNextQuotationMark(int& num, string& word, string& inputLine);
-	int getCharCount();
 
 
 private:
-	Lexer() : charCount(0) {};
-
-protected:
-	int charCount;
+	Lexer() {};
 
 };
 
