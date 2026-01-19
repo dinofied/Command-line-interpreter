@@ -75,6 +75,9 @@
     <ClCompile Include="Rm.cpp">
       <Filter>Source Files\Commands.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Head.cpp">
+      <Filter>Source Files\Commands.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -115,6 +118,9 @@
     </ClInclude>
     <ClInclude Include="Rm.h">
       <Filter>Header Files\Commands.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Head.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
