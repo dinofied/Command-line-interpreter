@@ -11,6 +11,7 @@
 #include "Truncate.h"
 #include "Rm.h"
 #include "Head.h"
+#include "Tr.h"
 
 using namespace std;
 class commandFactory {

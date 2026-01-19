@@ -136,6 +136,7 @@
     <ClCompile Include="Rm.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Touch.cpp" />
+    <ClCompile Include="Tr.cpp" />
     <ClCompile Include="Truncate.cpp" />
     <ClCompile Include="wordCount.cpp" />
   </ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="Rm.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Touch.h" />
+    <ClInclude Include="Tr.h" />
     <ClInclude Include="Truncate.h" />
     <ClInclude Include="wordCount.h" />
   </ItemGroup>

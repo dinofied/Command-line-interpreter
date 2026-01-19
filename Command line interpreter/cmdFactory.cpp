@@ -40,6 +40,9 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	if (commandName == "head") {
 		return (Head*) new Head(commandName, commandArgs, charCount);
 	}
+	if (commandName == "tr") {
+		return (Tr*) new Tr(commandName, commandArgs, charCount);
+	}
 
 	
 
