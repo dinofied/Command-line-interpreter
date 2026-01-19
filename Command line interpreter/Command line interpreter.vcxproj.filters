@@ -66,6 +66,9 @@
     <ClCompile Include="Prompt.cpp">
       <Filter>Source Files\Commands.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Batch.cpp">
+      <Filter>Source Files\Commands.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Prompt.h">
+      <Filter>Header Files\Commands.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Batch.h">
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
   </ItemGroup>

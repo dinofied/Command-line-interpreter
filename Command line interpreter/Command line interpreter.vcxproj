@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Batch.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandLineInterpreter.cpp" />
     <ClCompile Include="Date.cpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="wordCount.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Batch.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandLineInterpreter.h" />
     <ClInclude Include="Date.h" />

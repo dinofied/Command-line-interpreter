@@ -1,0 +1,3 @@
+echo "Cao"
+echo "Ja sam"
+echo "Solaja"

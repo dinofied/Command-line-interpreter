@@ -8,16 +8,18 @@ void CommandLineInterpreter::run(std::istream& stream) {
 	}
 	string temp;
 
-	cout << CommandLineInterpreter::terminalInstance().getReadySign() << " ";
-	while (std::getline(cin, temp)) {
+	cout << CommandLineInterpreter::terminalInstance().getReadySign();
+	while (std::getline(stream, temp)) {
 		
 
 		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), Lexer::lexerInstance().getCharCount());
-
 		if (newCmd) newCmd->execute();
 
-		cout << endl;
-		cout << CommandLineInterpreter::terminalInstance().getReadySign() << " ";
+		if (!newCmd || (newCmd && (newCmd->getName() != "Batch"))) {
+			cout << endl;
+			cout << CommandLineInterpreter::terminalInstance().getReadySign();
+		}
+
 		delete newCmd;
 	}
 }
@@ -30,6 +32,11 @@ void CommandLineInterpreter::setReadySign(std::string newSign) {
 
 std::string CommandLineInterpreter::getReadySign() {
 
-	return readySign;
+	if (!isBatch) return readySign + ' ';
+	else return "";
+}
 
+void CommandLineInterpreter::isBatchSwitch() {
+	if (this->isBatch) isBatch = false;
+	else isBatch = true;
 }

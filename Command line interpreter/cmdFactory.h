@@ -7,6 +7,7 @@
 #include "Touch.h"
 #include "wordCount.h"
 #include "Prompt.h"
+#include "Batch.h"
 
 using namespace std;
 class commandFactory {

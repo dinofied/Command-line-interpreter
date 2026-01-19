@@ -2,7 +2,7 @@
 
 
 Command* commandFactory::createCmd(vector<string> words, int charCount) {
-	if (!words.size()) {
+	if (words.size() == 0) {
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
 	}
@@ -27,6 +27,9 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	}
 	if (commandName == "prompt") {
 		return (Prompt*) new Prompt(commandName, commandArgs, charCount);
+	}
+	if (commandName == "batch") {
+		return (Batch*) new Batch(commandName, commandArgs, charCount);
 	}
 
 	

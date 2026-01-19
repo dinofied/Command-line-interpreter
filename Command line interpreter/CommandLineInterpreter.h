@@ -20,8 +20,11 @@ public:
 	string getReadySign();
 	void setReadySign(string input);
 
+	void isBatchSwitch();
+
 private:
 	string readySign;
+	bool isBatch = false;
 
 
 	CommandLineInterpreter() : readySign("&") {};
