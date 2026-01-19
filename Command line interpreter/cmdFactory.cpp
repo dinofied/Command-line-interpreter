@@ -2,7 +2,7 @@
 
 
 Command* commandFactory::createCmd(vector<string> words, int charCount) {
-	if (words.size() == 0) {
+	if (!words.size()) {
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
 	}
@@ -30,6 +30,12 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	}
 	if (commandName == "batch") {
 		return (Batch*) new Batch(commandName, commandArgs, charCount);
+	}
+	if (commandName == "truncate") {
+		return (Truncate*) new Truncate(commandName, commandArgs, charCount);
+	}
+	if (commandName == "rm") {
+		return (Rm*) new Rm(commandName, commandArgs, charCount);
 	}
 
 	

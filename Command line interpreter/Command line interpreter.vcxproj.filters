@@ -69,6 +69,12 @@
     <ClCompile Include="Batch.cpp">
       <Filter>Source Files\Commands.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Truncate.cpp">
+      <Filter>Source Files\Commands.cpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Rm.cpp">
+      <Filter>Source Files\Commands.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -102,6 +108,12 @@
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
     <ClInclude Include="Batch.h">
+      <Filter>Header Files\Commands.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Truncate.h">
+      <Filter>Header Files\Commands.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Rm.h">
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
   </ItemGroup>

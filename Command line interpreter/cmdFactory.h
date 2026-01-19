@@ -8,6 +8,8 @@
 #include "wordCount.h"
 #include "Prompt.h"
 #include "Batch.h"
+#include "Truncate.h"
+#include "Rm.h"
 
 using namespace std;
 class commandFactory {

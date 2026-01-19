@@ -132,8 +132,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="cmdFactory.cpp" />
     <ClCompile Include="Prompt.cpp" />
+    <ClCompile Include="Rm.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Touch.cpp" />
+    <ClCompile Include="Truncate.cpp" />
     <ClCompile Include="wordCount.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -145,8 +147,10 @@
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="cmdFactory.h" />
     <ClInclude Include="Prompt.h" />
+    <ClInclude Include="Rm.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Touch.h" />
+    <ClInclude Include="Truncate.h" />
     <ClInclude Include="wordCount.h" />
   </ItemGroup>
   <ItemGroup>
