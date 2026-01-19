@@ -16,7 +16,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		if (newCmd) newCmd->execute();
 
 		if (!newCmd || (newCmd && (newCmd->getName() != "Batch"))) {
-			cout << endl;
+			if (newCmd) cout << endl;
 			cout << CommandLineInterpreter::terminalInstance().getReadySign();
 		}
 
