@@ -13,12 +13,12 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		
 
 		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), Lexer::lexerInstance().getCharCount());
-		if (!newCmd) continue;
-		else newCmd->execute();
 
-		delete newCmd;
+		if (newCmd) newCmd->execute();
+
 		cout << endl;
 		cout << CommandLineInterpreter::terminalInstance().getReadySign() << " ";
+		delete newCmd;
 	}
 }
 

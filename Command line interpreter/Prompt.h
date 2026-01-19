@@ -1,0 +1,20 @@
+#pragma once
+#include "Command.h"
+#include "CommandLineInterpreter.h"
+
+class Prompt : public Command {
+
+public:
+
+	Prompt(string commandName, vector<string> commandArgs, int charCount) : Command(commandName, commandArgs, charCount) {
+
+	};
+
+private:
+	virtual void runCommand();
+
+	virtual bool isValidBody();
+
+	virtual void errReport();
+};
+

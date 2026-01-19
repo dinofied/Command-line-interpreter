@@ -6,6 +6,7 @@
 #include "Date.h"
 #include "Touch.h"
 #include "wordCount.h"
+#include "Prompt.h"
 
 using namespace std;
 class commandFactory {

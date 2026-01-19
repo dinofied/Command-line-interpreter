@@ -7,7 +7,7 @@ void Command::execute() {
 	else errReport();
 };
 
-
+//used for pointing out the report location when reporting the error
 void Command::errPlacesReport() {
 	if (!errPlaces.size()) return;
 	int errPlace = 0;
@@ -27,7 +27,7 @@ void Command::errPlacesReport() {
 
 };
 
-
+//returns the command with args in string format
 string Command::toString() {
 	string cmd = "";
 	cmd += commandName;
@@ -38,6 +38,7 @@ string Command::toString() {
 	return cmd;
 }
 
+//checks if the last argument is a file
 bool Command::isLastArgFile() {
 	int lastArgSize = commandArgs[commandArgs.size() - 1].size();
 	if (lastArgSize < 4) return false;
@@ -48,6 +49,7 @@ bool Command::isLastArgFile() {
 	return false;
 }
 
+//checks if the last argument is a textual arg
 bool Command::isLastArgText() {
 	int l = -1, r = -1;
 	int lastArgId = commandArgs.size() - 1;
@@ -66,6 +68,7 @@ bool Command::isLastArgText() {
 	}
 }
 
+//returns the arg without quotation marks
 string Command::trimmedBody() {
 	string trimmed = "";
 	for (int i = 1; i < commandArgs[commandArgs.size() - 1].size() - 1; i++) trimmed += commandArgs[commandArgs.size() - 1][i];

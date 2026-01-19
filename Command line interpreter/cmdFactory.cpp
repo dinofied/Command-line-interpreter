@@ -25,6 +25,10 @@ Command* commandFactory::createCmd(vector<string> words, int charCount) {
 	if (commandName == "touch") {
 		return (Touch*) new Touch(commandName, commandArgs, charCount);
 	}
+	if (commandName == "prompt") {
+		return (Prompt*) new Prompt(commandName, commandArgs, charCount);
+	}
+
 	
 
 	nameDoesntExsist(commandName, commandArgs);
