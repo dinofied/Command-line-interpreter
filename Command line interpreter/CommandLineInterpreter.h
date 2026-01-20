@@ -6,6 +6,7 @@
 #include "Echo.h"
 #include "readySign.h"
 #include "Lexer.h"
+#include "Collector.h"
 using namespace std;
 
 class CommandLineInterpreter {

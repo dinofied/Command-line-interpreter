@@ -11,16 +11,21 @@ void CommandLineInterpreter::run(std::istream& stream) {
 	cout << CommandLineInterpreter::terminalInstance().getReadySign();
 	while (std::getline(stream, temp)) {
 		
+		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
 
-		Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(temp), temp.size());
-		if (newCmd) newCmd->execute();
+		for (int i = 0; i < pipes.size(); i++) {
 
-		if (!newCmd || (newCmd && (newCmd->getName() != "Batch"))) {
-			if (newCmd) cout << endl;
-			cout << CommandLineInterpreter::terminalInstance().getReadySign();
+			Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(pipes[i]), pipes[i].size());
+			if (newCmd) newCmd->execute();
+			delete newCmd;
+
 		}
 
-		delete newCmd;
+		/*if (!newCmd || (newCmd && (newCmd->getName() != "Batch"))) {
+			if (newCmd) cout << endl;
+			cout << CommandLineInterpreter::terminalInstance().getReadySign();
+		}*/
+		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 }
 

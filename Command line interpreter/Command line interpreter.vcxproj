@@ -124,6 +124,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Batch.cpp" />
+    <ClCompile Include="Collector.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="CommandLineInterpreter.cpp" />
     <ClCompile Include="Date.cpp" />
@@ -132,6 +133,7 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="cmdFactory.cpp" />
+    <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Prompt.cpp" />
     <ClCompile Include="Rm.cpp" />
     <ClCompile Include="Time.cpp" />
@@ -142,6 +144,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Batch.h" />
+    <ClInclude Include="Collector.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandLineInterpreter.h" />
     <ClInclude Include="Date.h" />
@@ -149,6 +152,7 @@
     <ClInclude Include="Head.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="cmdFactory.h" />
+    <ClInclude Include="Pipe.h" />
     <ClInclude Include="Prompt.h" />
     <ClInclude Include="Rm.h" />
     <ClInclude Include="Time.h" />

@@ -31,6 +31,18 @@
     <Filter Include="Source Files\cmdFactory">
       <UniqueIdentifier>{87df542d-d416-4d33-a9c9-2c44fe4de966}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Pipe">
+      <UniqueIdentifier>{049f4611-70ff-4a87-a99a-613a0f24a84c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Pipe">
+      <UniqueIdentifier>{eaa042d6-ecce-4117-9ca5-8108b0d1f3f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Collector">
+      <UniqueIdentifier>{75f52c01-9821-469d-a028-8c385a1224a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Collector">
+      <UniqueIdentifier>{8136af86-7ef4-4428-81fc-b18e113d9b96}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Echo.cpp">
@@ -81,6 +93,12 @@
     <ClCompile Include="Tr.cpp">
       <Filter>Source Files\Commands.cpp</Filter>
     </ClCompile>
+    <ClCompile Include="Pipe.cpp">
+      <Filter>Source Files\Pipe</Filter>
+    </ClCompile>
+    <ClCompile Include="Collector.cpp">
+      <Filter>Source Files\Collector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -127,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="Tr.h">
       <Filter>Header Files\Commands.h</Filter>
+    </ClInclude>
+    <ClInclude Include="Pipe.h">
+      <Filter>Header Files\Pipe</Filter>
+    </ClInclude>
+    <ClInclude Include="Collector.h">
+      <Filter>Header Files\Collector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
