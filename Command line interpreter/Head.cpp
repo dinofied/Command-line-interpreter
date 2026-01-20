@@ -5,7 +5,7 @@ void Head::runCommand() {
 	int lineCount = stoi(commandArgs[0].substr(1, commandArgs[0].size() - 1));
 	vector<string> out;
 
-	if (isLastArgFile()) {
+	if (isArgFile(commandArgs[1])) {
 		std::ifstream file(commandArgs[1]);
 
 		string temp;
@@ -33,7 +33,7 @@ bool Head::isValidBody() {
 		if (commandArgs[0][i] < 48 || commandArgs[0][i] > 57) return false;
 	}
 	if (commandArgs.size() == 2) {
-		if (!isLastArgFile()) return false;
+		if (!isArgFile(commandArgs[1])) return false;
 	}
 
 	return true;

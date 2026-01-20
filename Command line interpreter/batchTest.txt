@@ -1,3 +1,4 @@
 echo "Cao"
 echo "Ja sam"
 echo "Solaja"
+echo "andrej" | echo helloWorlds.txt

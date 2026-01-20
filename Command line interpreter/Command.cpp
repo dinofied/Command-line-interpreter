@@ -39,44 +39,35 @@ string Command::toString() {
 }
 
 //checks if the last argument is a file
-bool Command::isLastArgFile() {
-	int lastArgSize = commandArgs[commandArgs.size() - 1].size();
-	if (lastArgSize < 4) return false;
+bool Command::isArgFile(string arg) {
+	int argSize = arg.size() - 1;
+	if (argSize < 4) return false;
 
-	string end = commandArgs[commandArgs.size() - 1].substr(lastArgSize - 4, lastArgSize - 1);
+	string end = arg.substr(argSize - 3, argSize);
 	if (end == ".txt") return true;
 
 	return false;
 }
 
 //checks if the last argument is a textual arg
-bool Command::isLastArgText() {
+bool Command::isArgText(string arg) {
 	int l = -1, r = -1;
-	int lastArgId = commandArgs.size() - 1;
 
-	for (int i = 0; i < commandArgs[lastArgId].size(); i++) {
-		if (commandArgs[lastArgId][i] == '"' && l != -1 && r == -1) r = i;
-		if (commandArgs[lastArgId][i] == '"' && l == -1) l = i;
+	for (int i = 0; i < arg.size(); i++) {
+		if (arg[i] == '"' && l != -1 && r == -1) r = i;
+		if (arg[i] == '"' && l == -1) l = i;
 	}
 
-	for (int i = 0; i < commandArgs[lastArgId].size(); i++) {
-		if (i < l || i > r) errPlaces.push_back(i + 1 + commandName.size());
+	for (int i = 0; i < arg.size(); i++) {
+		if (i < l || i > r) return false;
 	}
 
-	if (errPlaces.empty()) {
-		return true;
-	}
+	return true;
 }
 
 //returns the arg without quotation marks
-string Command::trimmedBody() {
-	string trimmed = "";
-	int it = 0;
-	int argId = commandArgs.size() - 1;
-	while (commandArgs[argId][it] != '"') it++;
-	
-	for (int i = it + 1; (i < commandArgs[argId].size() && commandArgs[argId][i] != '"'); i++) trimmed += commandArgs[argId][i];
-	return trimmed;
+string Command::trimmedText(string arg) {
+	return arg.substr(1, arg.size() - 2);
 }
 
 string Command::getName() {

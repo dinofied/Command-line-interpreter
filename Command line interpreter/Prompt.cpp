@@ -3,13 +3,13 @@
 
 void Prompt::runCommand() {
 
-	CommandLineInterpreter::terminalInstance().setReadySign(trimmedBody());
+	CommandLineInterpreter::terminalInstance().setReadySign(trimmedText(commandArgs[0]));
 
 };
 
 bool Prompt::isValidBody() {
 	if (commandArgs.size() != 1) return false;
-	if (Command::isLastArgText()) return true;
+	if (Command::isArgText(commandArgs[0])) return true;
 	return false;
 };
 

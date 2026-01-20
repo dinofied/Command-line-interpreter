@@ -9,7 +9,7 @@ void Truncate::runCommand() {
 
 bool Truncate::isValidBody() {
 	if (commandArgs.size() != 1) return false;
-	if (Command::isLastArgFile()) return true;
+	if (Command::isArgFile(commandArgs[0])) return true;
 	return false;
 };
 

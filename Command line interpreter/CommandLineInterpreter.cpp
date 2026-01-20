@@ -17,14 +17,11 @@ void CommandLineInterpreter::run(std::istream& stream) {
 
 			Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(pipes[i]), pipes[i].size());
 			if (newCmd) newCmd->execute();
+			cout << endl;
 			delete newCmd;
 
 		}
 
-		/*if (!newCmd || (newCmd && (newCmd->getName() != "Batch"))) {
-			if (newCmd) cout << endl;
-			cout << CommandLineInterpreter::terminalInstance().getReadySign();
-		}*/
 		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 }

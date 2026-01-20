@@ -14,12 +14,13 @@ public:
 
 	virtual void execute();
 	string toString();
-	bool isLastArgFile();
-	bool isLastArgText();
-
+	static bool isArgFile(string arg);
+	static bool isArgText(string arg);
+	string trimmedText(string arg);
 
 	virtual string getName();
 	virtual vector<string> getArgs();
+
 
 
 private:
@@ -48,7 +49,6 @@ protected:
 
 	//genericne funkcije
 	void errPlacesReport();
-	string trimmedBody();
 
 };
 

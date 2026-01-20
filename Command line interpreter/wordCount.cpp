@@ -3,7 +3,7 @@
 
 void wordCount::runCommand() {
 	int counter = 0;
-	if (isLastArgFile()) {
+	if (isArgFile(commandArgs[1])) {
 
 		std::ifstream file(commandArgs[commandArgs.size() - 1]);
 		if (!file) {
@@ -30,10 +30,10 @@ void wordCount::runCommand() {
 	}
 	else {
 		if (commandArgs[0] == "-c") {
-			counter += trimmedBody().size();
+			counter += trimmedText(commandArgs[1]).size();
 		}
 		else {
-			for (char c : trimmedBody()) {
+			for (char c : trimmedText(commandArgs[1])) {
 				if (isspace(c)) counter++;
 			}
 			counter++;
@@ -48,8 +48,8 @@ void wordCount::runCommand() {
 bool wordCount::isValidBody() {
 	if (commandArgs.size() != 2) return false;
 	if (commandArgs[0] != "-w" && commandArgs[0] != "-c") return false;
-	if (Command::isLastArgFile()) return true;
-	if (Command::isLastArgText()) return true;
+	if (Command::isArgFile(commandArgs[1])) return true;
+	if (Command::isArgText(commandArgs[1])) return true;
 	return false;
 };
 

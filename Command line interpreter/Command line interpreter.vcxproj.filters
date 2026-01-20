@@ -43,6 +43,12 @@
     <Filter Include="Header Files\Collector">
       <UniqueIdentifier>{8136af86-7ef4-4428-81fc-b18e113d9b96}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Parser">
+      <UniqueIdentifier>{369ba134-d408-4618-b826-d1e6178480b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Parser">
+      <UniqueIdentifier>{71614f66-34a2-4009-b25e-b0d9fc764354}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Echo.cpp">
@@ -99,6 +105,9 @@
     <ClCompile Include="Collector.cpp">
       <Filter>Source Files\Collector</Filter>
     </ClCompile>
+    <ClCompile Include="Parser.cpp">
+      <Filter>Source Files\Parser</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -151,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Collector.h">
       <Filter>Header Files\Collector</Filter>
+    </ClInclude>
+    <ClInclude Include="Parser.h">
+      <Filter>Header Files\Parser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

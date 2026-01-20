@@ -3,14 +3,15 @@
 
 void Tr::runCommand() {
 
-	if (commandArgs.size() == 1) std::cout << "Komanda jos ne podrzava unos konzole." << std::endl;
+	/*if (commandArgs.size() == 1) std::cout << "Komanda jos ne podrzava unos konzole." << std::endl;
 	else if (commandArgs.size() == 2) {
 
 	}
 	else {
 
-	}
+	}*/
 
+	cout << "Komanda je jos u izradi." << endl;
 };
 
 bool Tr::isValidBody() {
@@ -18,21 +19,21 @@ bool Tr::isValidBody() {
 
 
 	//swapping args so my fucnctions work since they check the last arg
-	string swap = commandArgs[0];
+	/*string swap = commandArgs[0];
 	if (commandArgs.size() == 2) {
 		commandArgs[0] = commandArgs[1];
 		commandArgs[1] = swap;
-		if (!isLastArgFile()) return false;
+		if (!isArgFile()) return false;
 	}
 	else if (commandArgs.size() == 3) {
 		commandArgs[0] = commandArgs[1];
 		commandArgs[1] = swap;
 		commandArgs[1] = commandArgs[2];
 		commandArgs[2] = swap;
-		if (!isLastArgFile()) return false;
+		if (!isArgFile()) return false;
 		if (commandArgs[1][0] != '"' || commandArgs[1][commandArgs[1].size() - 1] != '"') return false;
 	}
-	if (commandArgs[0][0] != '-') return false;
+	if (commandArgs[0][0] != '-') return false;*/
 
 	return true;
 };

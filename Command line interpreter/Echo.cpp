@@ -6,7 +6,7 @@ using namespace std;
 
 void Echo::runCommand() {
 
-	if (isLastArgFile()) {
+	if (isArgFile(commandArgs[0])) {
 		std::ifstream file(commandArgs[commandArgs.size() - 1]);
 		if (!file) {
 			cout << "Fajl nije pronadjen:" << endl;
@@ -24,7 +24,7 @@ void Echo::runCommand() {
 		file.seekg(0, std::ios::beg);
 		
 	}
-	else std::cout << Command::trimmedBody() << std::endl;
+	else std::cout << Command::trimmedText(commandArgs[0]) << std::endl;
 
 }
 
@@ -46,7 +46,7 @@ void Echo::errReport() {
 
 bool Echo::isValidBody() {
 	if (commandArgs.size() != 1) return false;
-	if (Command::isLastArgFile()) return true;
-	if (Command::isLastArgText()) return true;
+	if (Command::isArgFile(commandArgs[0])) return true;
+	if (Command::isArgText(commandArgs[0])) return true;
 	return false;
 };

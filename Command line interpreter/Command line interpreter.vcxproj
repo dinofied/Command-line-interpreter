@@ -133,6 +133,7 @@
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="cmdFactory.cpp" />
+    <ClCompile Include="Parser.cpp" />
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Prompt.cpp" />
     <ClCompile Include="Rm.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Head.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="cmdFactory.h" />
+    <ClInclude Include="Parser.h" />
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Prompt.h" />
     <ClInclude Include="Rm.h" />
