@@ -3,7 +3,7 @@
 
 class Tr : public Command{
 public:
-	Tr(string commandName, vector<string> commandArgs, int charCount) : Command(commandName, commandArgs, charCount) {
+	Tr(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount) : Command(commandName, commandArgs, redInfo, charCount) {
 
 	};
 

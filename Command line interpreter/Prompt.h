@@ -6,7 +6,7 @@ class Prompt : public Command {
 
 public:
 
-	Prompt(string commandName, vector<string> commandArgs, int charCount) : Command(commandName, commandArgs, charCount) {
+	Prompt(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount) : Command(commandName, commandArgs, redInfo, charCount) {
 
 	};
 

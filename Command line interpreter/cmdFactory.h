@@ -12,12 +12,13 @@
 #include "Rm.h"
 #include "Head.h"
 #include "Tr.h"
+#include "Command.h"
 
 using namespace std;
 class commandFactory {
 public:
 
-	static Command* createCmd(vector<string> words, int charCount);
+	static Command* createCmd(ParsedCommand parsedCommand, int charCount);
 
 private:
 	string commandName;

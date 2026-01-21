@@ -4,7 +4,7 @@
 
 class Date : public Command{
 public:
-	Date(string commandName, vector<string> commandArgs, int charCount) : Command(commandName, commandArgs, charCount) {
+	Date(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount) : Command(commandName, commandArgs, redInfo, charCount) {
 
 	};
 

@@ -20,6 +20,7 @@ void Echo::runCommand() {
 			cout << temp << endl;
 		}
 
+
 		file.clear();
 		file.seekg(0, std::ios::beg);
 		

@@ -15,7 +15,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 
 		for (int i = 0; i < pipes.size(); i++) {
 
-			Command* newCmd = commandFactory::createCmd(Lexer::lexerInstance().divideWords(pipes[i]), pipes[i].size());
+			Command* newCmd = commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(temp)), pipes[i].size());
 			if (newCmd) newCmd->execute();
 			cout << endl;
 			delete newCmd;
@@ -25,7 +25,6 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 }
-
 
 void CommandLineInterpreter::setReadySign(std::string newSign) {
 

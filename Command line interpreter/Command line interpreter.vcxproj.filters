@@ -149,9 +149,6 @@
     <ClInclude Include="Rm.h">
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
-    <ClInclude Include="Head.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Tr.h">
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
@@ -163,6 +160,9 @@
     </ClInclude>
     <ClInclude Include="Parser.h">
       <Filter>Header Files\Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Head.h">
+      <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

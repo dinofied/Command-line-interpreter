@@ -4,6 +4,19 @@
 #include <iostream>
 using namespace std;
 
+struct RedirectionInfo {
+	std::string inputFile;
+	std::string outputFile;
+	bool hasInput = false;
+	bool hasOutput = false;
+	bool hasAppend = false;
+};
+
+struct ParsedCommand {
+	std::vector<std::string> body;
+	RedirectionInfo redirection;
+};
+
 
 //base klasa za sve komande
 //sadrzi osnovne stvari kao: ime komande, argumente komande, broj karaktera i ima apstraktne i genericne metode
@@ -26,6 +39,7 @@ public:
 private:
 
 protected:
+	RedirectionInfo redInfo;
 	string commandName;
 	vector<string> commandArgs;
 	int charCount;
@@ -34,11 +48,12 @@ protected:
 	vector<int> errPlaces;
 
 
-	Command(string commandName, vector<string> commandArgs, int charCount) {
+	Command(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount) {
 		errPlaces = {};
 		this->commandName = commandName;
 		this->commandArgs = commandArgs;
 		this->charCount = charCount;
+		this->redInfo = redInfo;
 	};
 
 	virtual void runCommand() = 0;
