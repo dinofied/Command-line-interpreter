@@ -12,18 +12,42 @@ void CommandLineInterpreter::run(std::istream& stream) {
 	while (std::getline(stream, temp)) {
 		
 		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
-
+		vector<Command*> commands;
+		
 		for (int i = 0; i < pipes.size(); i++) {
 
-			//kasnije ce se koristiti za logiku komandi koje su deo pipea
-			PipeInfo pipeInfo = { i, pipes.size() };
+			vector<string> tokens = Lexer::lexerInstance().divideWords(pipes[i]);
+			ParsedCommand parsedToken = Parser::parserInstance().parsedCommand(tokens);
 
-			Command* newCmd = commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(temp)), pipes[i].size());
-			if (newCmd) newCmd->execute();
-			cout << endl;
-			delete newCmd;
-
+			Command* cmd = commandFactory::createCmd(parsedToken, temp.size());
+			commands.push_back(cmd);
 		}
+
+		bool allowedInput, allowedOutput;
+		bool hasError = false;
+		for (int i = 0; i < commands.size(); i++) {
+			if (i == 0) allowedInput = true;
+			else allowedInput = false;
+			if (i == commands.size() - 1) allowedOutput = true;
+			else allowedOutput = false;
+
+			if (commands[i]->getRedirectionInfo().hasInput && !allowedInput) {
+				cout << "Greska: Ne moze se izvrsiti redirekcija ulaza na komandama koje nisu prve u nizu." << endl;
+				hasError = true;
+			}
+			if ((commands[i]->getRedirectionInfo().hasOutput || commands[i]->getRedirectionInfo().hasAppend) && !allowedOutput) {
+				cout << "Greska: Ne moze se izvrsiti redirekcija izlaza na komandama koje nisu poslednje u nizu." << endl;
+				hasError = true;
+			}
+		}
+
+
+		for (int i = 0; i < commands.size(); i++) {
+			if (!hasError) commands[i]->execute();
+			delete commands[i];
+		}
+
+		
 
 		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}

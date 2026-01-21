@@ -20,7 +20,7 @@ public:
 
 	virtual string getName();
 	virtual vector<string> getArgs();
-
+	RedirectionInfo getRedirectionInfo();
 
 
 private:

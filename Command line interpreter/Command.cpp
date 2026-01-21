@@ -77,3 +77,7 @@ string Command::getName() {
 vector<string> Command::getArgs() {
 	return commandArgs;
 }
+
+RedirectionInfo Command::getRedirectionInfo() {
+	return redInfo;
+};

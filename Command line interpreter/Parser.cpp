@@ -55,7 +55,10 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 			else {
 				return { {"error 9"} };
 			}
+		} else if (inRedirects) {
+			return { {"error 10"} };
 		}
+		
 
 
 		if (!inRedirects) result.body.push_back(tokens[i]);

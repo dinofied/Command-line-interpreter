@@ -4,8 +4,8 @@
 
 
 struct RedirectionInfo {
-	std::string inputFile;
-	std::string outputFile;
+	std::string inputFile = "";
+	std::string outputFile = "";
 	bool hasInput = false;
 	bool hasOutput = false;
 	bool hasAppend = false;
