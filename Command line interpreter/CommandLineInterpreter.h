@@ -8,6 +8,7 @@
 #include "Lexer.h"
 #include "Collector.h"
 #include "Parser.h"
+#include "StreamManager.h"
 using namespace std;
 
 class CommandLineInterpreter {

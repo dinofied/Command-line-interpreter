@@ -3,7 +3,6 @@
 vector<string> Lexer::divideWords(string inputLine) {
 	vector<string> words;
 	string word = "";
-	inputLine = inputLine.substr(0, 512);
 
 	for (int i = 0; i < inputLine.size(); i++) {
 

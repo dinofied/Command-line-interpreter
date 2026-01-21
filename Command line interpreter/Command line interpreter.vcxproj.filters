@@ -49,6 +49,12 @@
     <Filter Include="Header Files\Parser">
       <UniqueIdentifier>{71614f66-34a2-4009-b25e-b0d9fc764354}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\StreamManager">
+      <UniqueIdentifier>{05b9e982-b16c-4b3c-a942-639b8b4954a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\StreamManager">
+      <UniqueIdentifier>{1f88c4ac-5c71-4897-8294-f3b57965f58f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Echo.cpp">
@@ -108,6 +114,9 @@
     <ClCompile Include="Parser.cpp">
       <Filter>Source Files\Parser</Filter>
     </ClCompile>
+    <ClCompile Include="StreamManager.cpp">
+      <Filter>Source Files\StreamManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -166,6 +175,9 @@
     </ClInclude>
     <ClInclude Include="structs.h">
       <Filter>Resource Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StreamManager.h">
+      <Filter>Header Files\StreamManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

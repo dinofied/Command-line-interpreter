@@ -20,3 +20,8 @@ struct PipeInfo {
 	int pipeId;
 	int pipeCount;
 };
+
+struct IOStreamInfo {
+	std::istream* input;
+	std::ostream* output;
+};

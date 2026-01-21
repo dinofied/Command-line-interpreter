@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include "structs.h"
+
 using namespace std;
 
 //base klasa za sve komande
@@ -26,6 +27,8 @@ public:
 private:
 
 protected:
+	iostream* inputStream;
+	iostream* outputStream;
 	RedirectionInfo redInfo;
 	string commandName;
 	vector<string> commandArgs;
@@ -35,12 +38,14 @@ protected:
 	vector<int> errPlaces;
 
 
-	Command(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount) {
+	Command(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount, IOStreamInfo ioInfo) {
 		errPlaces = {};
 		this->commandName = commandName;
 		this->commandArgs = commandArgs;
 		this->charCount = charCount;
 		this->redInfo = redInfo;
+		this->inputStream = (iostream*)ioInfo.input;
+		this->outputStream = (iostream*)ioInfo.output;
 	};
 
 	virtual void runCommand() = 0;

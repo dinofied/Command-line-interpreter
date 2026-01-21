@@ -11,39 +11,52 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , int charCount) 
 	vector<string> commandArgs = std::vector<std::string>(parsedCommand.body.begin() + 1, parsedCommand.body.end());
 	RedirectionInfo redInfo = parsedCommand.redirection;
 
+
+
+
+	std::istream* input = &std::cin;
+	if (redInfo.inputFile != "") {
+		input = StreamManager::streamManagerInstance().createIOStream(redInfo.inputFile);
+	}
+	std::ostream* output = &std::cout;
+	if (redInfo.outputFile != "") {
+		output = StreamManager::streamManagerInstance().createIOStream(redInfo.outputFile);
+	}
+
+	IOStreamInfo ioInfo = { input, output };
 	
 	if (commandName == "echo") {
-		return (Echo*) new Echo(commandName, commandArgs, redInfo, charCount);
+		return (Echo*) new Echo(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "time") {
-		return (Time*) new Time(commandName, commandArgs, redInfo, charCount);
+		return (Time*) new Time(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "date") {
-		return (Date*) new Date(commandName, commandArgs, redInfo, charCount);
+		return (Date*) new Date(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "wc") {
-		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, charCount);
+		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "touch") {
-		return (Touch*) new Touch(commandName, commandArgs, redInfo, charCount);
+		return (Touch*) new Touch(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "prompt") {
-		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, charCount);
+		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "batch") {
-		return (Batch*) new Batch(commandName, commandArgs, redInfo, charCount);
+		return (Batch*) new Batch(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "truncate") {
-		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, charCount);
+		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "rm") {
-		return (Rm*) new Rm(commandName, commandArgs, redInfo, charCount);
+		return (Rm*) new Rm(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "head") {
-		return (Head*) new Head(commandName, commandArgs, redInfo, charCount);
+		return (Head*) new Head(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 	if (commandName == "tr") {
-		return (Tr*) new Tr(commandName, commandArgs, redInfo, charCount);
+		return (Tr*) new Tr(commandName, commandArgs, redInfo, charCount, ioInfo);
 	}
 
 	

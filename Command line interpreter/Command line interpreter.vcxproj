@@ -137,6 +137,7 @@
     <ClCompile Include="Pipe.cpp" />
     <ClCompile Include="Prompt.cpp" />
     <ClCompile Include="Rm.cpp" />
+    <ClCompile Include="StreamManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Touch.cpp" />
     <ClCompile Include="Tr.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Prompt.h" />
     <ClInclude Include="Rm.h" />
+    <ClInclude Include="StreamManager.h" />
     <ClInclude Include="structs.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Touch.h" />

@@ -3,7 +3,10 @@
 
 void Command::execute() {
 
-	if (isValidBody()) runCommand();
+	if (isValidBody()) {
+
+		runCommand();
+	}
 	else errReport();
 };
 
@@ -40,7 +43,7 @@ string Command::toString() {
 
 //checks if the last argument is a file
 bool Command::isArgFile(string arg) {
-	int argSize = arg.size() - 1;
+	size_t argSize = arg.size() - 1;
 	if (argSize < 4) return false;
 
 	string end = arg.substr(argSize - 3, argSize);

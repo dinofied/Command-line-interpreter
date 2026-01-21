@@ -14,23 +14,24 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
 		vector<Command*> commands;
 		
-		for (int i = 0; i < pipes.size(); i++) {
-
-			vector<string> tokens = Lexer::lexerInstance().divideWords(pipes[i]);
-			ParsedCommand parsedToken = Parser::parserInstance().parsedCommand(tokens);
-
-			Command* cmd = commandFactory::createCmd(parsedToken, temp.size());
-			commands.push_back(cmd);
+		for (size_t i = 0; i < pipes.size(); i++) {
+			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), temp.size()));
 		}
 
 		bool allowedInput, allowedOutput;
 		bool hasError = false;
 		for (int i = 0; i < commands.size(); i++) {
+			if (commands[i] == nullptr) {
+				hasError = true;
+				break;
+			}
+
 			if (i == 0) allowedInput = true;
 			else allowedInput = false;
 			if (i == commands.size() - 1) allowedOutput = true;
 			else allowedOutput = false;
 
+			//trenutno ne radi zbog izmene u poljima za redirekciju komande, popraviti sa stream checkovima
 			if (commands[i]->getRedirectionInfo().hasInput && !allowedInput) {
 				cout << "Greska: Ne moze se izvrsiti redirekcija ulaza na komandama koje nisu prve u nizu." << endl;
 				hasError = true;
@@ -42,13 +43,16 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		}
 
 
-		for (int i = 0; i < commands.size(); i++) {
-			if (!hasError) commands[i]->execute();
+		for (size_t i = 0; i < commands.size(); i++) {
+			if (!hasError) {
+				commands[i]->execute();
+				if (i != commands.size() - 1) cout << endl;
+			}
 			delete commands[i];
 		}
 
 		
-
+		StreamManager::streamManagerInstance().deleteAllPointers();
 		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 }

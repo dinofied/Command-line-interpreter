@@ -1,6 +1,7 @@
 #include "Collector.h"
 
 std::vector<std::string> Collector::breakPipes(std::string inputLine) {
+	inputLine = inputLine.substr(0, 512);
 	std::vector<std::string> pipes;
 	std::string pipe = "";
 	bool inQuotationMarks = false;
