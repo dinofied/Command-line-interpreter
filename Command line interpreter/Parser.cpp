@@ -7,10 +7,10 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 	for (int i = 0; i < tokens.size(); i++) {
 		if (tokens[i] == "<") {
 			inRedirects = true;
-			if (result.redirection.hasInput = true) {
+			if (result.redirection.hasInput == true) {
 				return {};
 			}
-			else result.redirection.hasInput = true;
+			else result.redirection.hasInput == true;
 			if (Command::isArgFile(tokens[i + 1])) {
 				result.redirection.inputFile = tokens[i + 1];
 				i++;
@@ -38,7 +38,7 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 			if (result.redirection.hasOutput == true || result.redirection.hasAppend == true) {
 				return {};
 			}
-			else result.redirection.hasOutput = true;
+			else result.redirection.hasAppend = true;
 			if (Command::isArgFile(tokens[i + 1])) {
 				result.redirection.outputFile = tokens[i + 1];
 				i++;
