@@ -2,21 +2,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include "structs.h"
 using namespace std;
-
-struct RedirectionInfo {
-	std::string inputFile;
-	std::string outputFile;
-	bool hasInput = false;
-	bool hasOutput = false;
-	bool hasAppend = false;
-};
-
-struct ParsedCommand {
-	std::vector<std::string> body;
-	RedirectionInfo redirection;
-};
-
 
 //base klasa za sve komande
 //sadrzi osnovne stvari kao: ime komande, argumente komande, broj karaktera i ima apstraktne i genericne metode

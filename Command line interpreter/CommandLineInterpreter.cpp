@@ -15,6 +15,9 @@ void CommandLineInterpreter::run(std::istream& stream) {
 
 		for (int i = 0; i < pipes.size(); i++) {
 
+			//kasnije ce se koristiti za logiku komandi koje su deo pipea
+			PipeInfo pipeInfo = { i, pipes.size() };
+
 			Command* newCmd = commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(temp)), pipes[i].size());
 			if (newCmd) newCmd->execute();
 			cout << endl;

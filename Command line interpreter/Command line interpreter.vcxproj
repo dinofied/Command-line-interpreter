@@ -157,6 +157,7 @@
     <ClInclude Include="Pipe.h" />
     <ClInclude Include="Prompt.h" />
     <ClInclude Include="Rm.h" />
+    <ClInclude Include="structs.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Touch.h" />
     <ClInclude Include="Tr.h" />

@@ -164,6 +164,9 @@
     <ClInclude Include="Head.h">
       <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
+    <ClInclude Include="structs.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="..\..\..\..\Desktop\cmdTests.txt">
