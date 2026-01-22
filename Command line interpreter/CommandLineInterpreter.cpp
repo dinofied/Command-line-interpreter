@@ -15,31 +15,30 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		vector<Command*> commands;
 		
 		for (size_t i = 0; i < pipes.size(); i++) {
-			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), temp.size()));
+			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), { i, pipes.size()}));
 		}
 
-		bool allowedInput, allowedOutput;
 		bool hasError = false;
 		for (int i = 0; i < commands.size(); i++) {
 			if (commands[i] == nullptr) {
 				hasError = true;
 				break;
 			}
-
+			bool allowedInput = false, allowedOutput = false;
 			if (i == 0) allowedInput = true;
-			else allowedInput = false;
 			if (i == commands.size() - 1) allowedOutput = true;
-			else allowedOutput = false;
 
+
+			if (allowedOutput == false && commands[i]->getRedirectionInfo().hasOutput) {
+				cout << "Izlaz se sme preusmeriti samo na poslednjoj komandi." << endl;
+				hasError = true;
+			}
+
+			if (allowedInput == false && (commands[i]->getRedirectionInfo().hasInput || commands[i]->getRedirectionInfo().hasAppend)) {
+				cout << "Ulaz se sme preusmeriti samo na prvoj komandi." << endl;
+				hasError = true;
+			}
 			
-			if (commands[i]->getRedirectionInfo().hasInput && !allowedInput) {
-				cout << "Greska: Ne moze se izvrsiti redirekcija ulaza na komandama koje nisu prve u nizu." << endl;
-				hasError = true;
-			}
-			if ((commands[i]->getRedirectionInfo().hasOutput || commands[i]->getRedirectionInfo().hasAppend) && !allowedOutput) {
-				cout << "Greska: Ne moze se izvrsiti redirekcija izlaza na komandama koje nisu poslednje u nizu." << endl;
-				hasError = true;
-			}
 		}
 
 

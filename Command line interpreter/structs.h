@@ -17,8 +17,8 @@ struct ParsedCommand {
 };
 
 struct PipeInfo {
-	int pipeId;
-	int pipeCount;
+	size_t pipeId;
+	size_t pipeCount;
 };
 
 struct IOStreamInfo {

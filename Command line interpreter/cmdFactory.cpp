@@ -2,25 +2,25 @@
 
 
 
-Command* commandFactory::createCmd(ParsedCommand parsedCommand , int charCount) {
+Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeInfo) {
 	if (!parsedCommand.body.size()) {
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
 	}
 
-	
-	string commandName = parsedCommand.body[0];
-	vector<string> commandArgs = std::vector<std::string>(parsedCommand.body.begin() + 1, parsedCommand.body.end());
-	RedirectionInfo redInfo = parsedCommand.redirection;
 
 	std::istream* input = &std::cin;
 	std::ostream* output = &std::cout;
 	IOStreamInfo ioInfo = { input, output };
 
-	if (!Inspector::isValidSyntax(parsedCommand, ioInfo)) {
+	if (!Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo)) {
 		cout << "Sintaksna greska." << endl;
 		return nullptr;
 	}
+
+	string commandName = parsedCommand.body[0];
+	vector<string> commandArgs = std::vector<std::string>(parsedCommand.body.begin() + 1, parsedCommand.body.end());
+	RedirectionInfo redInfo = parsedCommand.redirection;
 
 
 	if (redInfo.inputFile != "") {
@@ -31,38 +31,39 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , int charCount) 
 	}
 
 	
+	//silne nule su na mestu nekadasnjeg charCounta koji se trenutno ne koristi (error handling)
 	if (commandName == "echo") {
-		return (Echo*) new Echo(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Echo*) new Echo(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "time") {
-		return (Time*) new Time(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Time*) new Time(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "date") {
-		return (Date*) new Date(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Date*) new Date(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "wc") {
-		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "touch") {
-		return (Touch*) new Touch(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Touch*) new Touch(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "prompt") {
-		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "batch") {
-		return (Batch*) new Batch(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Batch*) new Batch(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "truncate") {
-		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "rm") {
-		return (Rm*) new Rm(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Rm*) new Rm(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "head") {
-		return (Head*) new Head(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Head*) new Head(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 	if (commandName == "tr") {
-		return (Tr*) new Tr(commandName, commandArgs, redInfo, charCount, ioInfo);
+		return (Tr*) new Tr(commandName, commandArgs, redInfo, 0, ioInfo);
 	}
 
 	

@@ -23,6 +23,12 @@ void Echo::runCommand() {
 			return;
 		}
 	}
+	while (getline(*inputStream, temp)){
+		if (temp == "EOF") break;
+		input.push_back(temp);
+	}
+
+	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
 	if (redInfo.outputFile != "") {
 		std::ifstream checkExistence(redInfo.outputFile);
 		if (!checkExistence) {
@@ -30,13 +36,10 @@ void Echo::runCommand() {
 			return;
 		}
 
-		std::ofstream file(redInfo.outputFile);
+		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
+		if (redInfo.hasAppend) outputStream = &fs;
 	}
 
-	while (getline(*inputStream, temp)){
-		if (temp == "EOF") break;
-		input.push_back(temp);
-	}
 
 	for (auto &token : input) {
 		*outputStream << token << endl;
