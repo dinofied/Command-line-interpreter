@@ -22,3 +22,9 @@ fstream* StreamManager::createIOStream(string fileName) {
 		return newStream;
 	}
 }
+
+stringstream* StreamManager::createStringStream() {
+	stringstream* newStream = new stringstream();
+	stringStreams.push_back(newStream);
+	return newStream;
+};

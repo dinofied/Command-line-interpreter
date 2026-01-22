@@ -73,6 +73,15 @@ string Command::trimmedText(string arg) {
 	return arg.substr(1, arg.size() - 2);
 }
 
+
+void Command::switchInputStream(iostream* newInput) {
+	inputStream = newInput;
+};
+
+void Command::switchOutputStream(iostream* newOutput) {
+	outputStream = newOutput;
+};
+
 string Command::getName() {
 	return commandName;
 }

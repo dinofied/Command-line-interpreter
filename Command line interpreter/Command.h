@@ -23,6 +23,8 @@ public:
 	virtual vector<string> getArgs();
 	RedirectionInfo getRedirectionInfo();
 
+	void switchInputStream(iostream* newInput);
+	void switchOutputStream(iostream* newOutput);
 
 private:
 

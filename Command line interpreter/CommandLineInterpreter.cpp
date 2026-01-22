@@ -3,13 +3,13 @@
 void CommandLineInterpreter::run(std::istream& stream) {
 
 	if (!stream) {
-		cout << "Fajl nije pronadjen." << endl;
+		std::cout << "Fajl nije pronadjen." << endl;
 		return;
 	}
 	string temp;
 
-	cout << CommandLineInterpreter::terminalInstance().getReadySign();
-	while (std::getline(stream, temp)) {
+	std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
+	while (getline(stream, temp)) {
 		
 		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
 		vector<Command*> commands;
@@ -30,29 +30,44 @@ void CommandLineInterpreter::run(std::istream& stream) {
 
 
 			if (allowedOutput == false && commands[i]->getRedirectionInfo().hasOutput) {
-				cout << "Izlaz se sme preusmeriti samo na poslednjoj komandi." << endl;
+				std::cout << "Izlaz se sme preusmeriti samo na poslednjoj komandi." << endl;
 				hasError = true;
 			}
 
 			if (allowedInput == false && (commands[i]->getRedirectionInfo().hasInput || commands[i]->getRedirectionInfo().hasAppend)) {
-				cout << "Ulaz se sme preusmeriti samo na prvoj komandi." << endl;
+				std::cout << "Ulaz se sme preusmeriti samo na prvoj komandi." << endl;
 				hasError = true;
 			}
 			
+		}
+
+		vector<stringstream*> pipeStreams;
+
+		for (int i = 0; i < commands.size() - 1; i++) {
+			pipeStreams.push_back(StreamManager::streamManagerInstance().createStringStream());
+		}
+
+		for (int i = 0; i < commands.size(); i++) {
+			if (i != 0){
+				commands[i]->switchInputStream(pipeStreams[i - 1]);
+			}
+			if (i != commands.size() - 1) {
+				commands[i]->switchOutputStream(pipeStreams[i]);
+			}
 		}
 
 
 		for (size_t i = 0; i < commands.size(); i++) {
 			if (!hasError) {
 				commands[i]->execute();
-				if (i != commands.size() - 1) cout << endl;
+				if (i != commands.size() - 1) std::cout << endl;
 			}
 			delete commands[i];
 		}
 
 		
 		StreamManager::streamManagerInstance().deleteAllPointers();
-		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
+		std::cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 	
 }
