@@ -2,55 +2,66 @@
 
 
 void wordCount::runCommand() {
-	int counter = 0;
-	if (isArgFile(commandArgs[1])) {
-
-		std::ifstream file(commandArgs[commandArgs.size() - 1]);
-		if (!file) {
-			cout << "Fajl nije pronadjen:" << endl;
-			cout << toString() << endl;
-
-			return;
-		}
-		string temp;
-
-		while (std::getline(file, temp)) {
-			if (temp == "") continue;
-			if (commandArgs[0] == "-c") counter += temp.size();
+	
+	if (commandArgs.size() == 2) {
+		if (Command::isArgText(commandArgs[1])) {
+			if (commandArgs[0] == "-c") {
+				*outputStream << Command::trimmedText(commandArgs[1]).size() << endl;
+				return;
+			} 
 			else {
-				for (char c : temp) {
-					if (isspace(c)) counter++;
+				int counter = 0;
+				for (int i = 0; i < commandArgs[1].size(); i++) {
+					if (commandArgs[1][i] == ' ') counter++;
 				}
-				counter++;
+				*outputStream << counter << endl;
+				return;
 			}
 		}
-		std::cout << counter << endl;
-		file.clear();
-		file.seekg(0, std::ios::beg);
 	}
-	else {
+
+	//ucitava podatke u listu
+	string temp;
+	vector<string> input;
+	while (getline(*inputStream, temp)) {
+		if (temp == "EOF") break;
+		input.push_back(temp);
+	}
+
+	//namesta da li ce fajl da se overwrituje ili appenduje
+	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
+	if (redInfo.outputFile != "") {
+		std::ifstream checkExistence(redInfo.outputFile);
+		if (!checkExistence) {
+			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
+			return;
+		}
+
+		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
+		if (redInfo.hasAppend) outputStream = &fs;
+	}
+
+	int counter = 0;
+	for (auto& token : input) {
 		if (commandArgs[0] == "-c") {
-			counter += trimmedText(commandArgs[1]).size();
+			counter += token.size();
 		}
 		else {
-			for (char c : trimmedText(commandArgs[1])) {
-				if (isspace(c)) counter++;
+			if (token == "" || token == "\n") continue;
+			for (char c : token) {
+				if (c == ' ') counter++;
 			}
 			counter++;
 		}
-		std::cout << counter << endl;
 	}
 
+	*outputStream << counter << endl;
 
 };
 
 //checks the validity of command arguments
 bool wordCount::isValidBody() {
-	if (commandArgs.size() != 2) return false;
-	if (commandArgs[0] != "-w" && commandArgs[0] != "-c") return false;
-	if (Command::isArgFile(commandArgs[1])) return true;
-	if (Command::isArgText(commandArgs[1])) return true;
-	return false;
+	return true;
 };
 
 

@@ -14,7 +14,6 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 	IOStreamInfo ioInfo = { input, output };
 
 	if (!Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo)) {
-		cout << "Sintaksna greska." << endl;
 		return nullptr;
 	}
 
@@ -75,17 +74,8 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 
 void commandFactory::nameDoesntExsist(string commandName, vector<string> commandArgs) {
 
-	cout << "Komanda ne postoji: " << endl;
-	cout << commandName << " ";
-	for (int i = 0; i < commandArgs.size(); i++) {
-		cout << commandArgs[i];
-		if (i != commandArgs.size() - 1) cout << " ";
-	}
-	cout << endl;
-	for (int i = 0; i < commandName.size() / 2; i++) {
-		cout << " ";
-	}
-	cout << "^" << endl;
+	cout << "Unknown command: " << commandName << endl;
+	
 
 };
 

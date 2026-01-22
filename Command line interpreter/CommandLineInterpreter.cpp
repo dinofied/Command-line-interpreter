@@ -21,6 +21,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		bool hasError = false;
 		for (int i = 0; i < commands.size(); i++) {
 			if (commands[i] == nullptr) {
+				std::cout << "Sintaksna greska u pipu broj: " << i + 1 << endl;
 				hasError = true;
 				break;
 			}
@@ -41,21 +42,22 @@ void CommandLineInterpreter::run(std::istream& stream) {
 			
 		}
 
-		vector<stringstream*> pipeStreams;
+		if (!hasError) {
+			vector<stringstream*> pipeStreams;
 
-		for (int i = 0; i < commands.size() - 1; i++) {
-			pipeStreams.push_back(StreamManager::streamManagerInstance().createStringStream());
-		}
-
-		for (int i = 0; i < commands.size(); i++) {
-			if (i != 0){
-				commands[i]->switchInputStream(pipeStreams[i - 1]);
+			for (int i = 0; i < commands.size() - 1; i++) {
+				pipeStreams.push_back(StreamManager::streamManagerInstance().createStringStream());
 			}
-			if (i != commands.size() - 1) {
-				commands[i]->switchOutputStream(pipeStreams[i]);
+
+			for (int i = 0; i < commands.size(); i++) {
+				if (i != 0) {
+					commands[i]->switchInputStream(pipeStreams[i - 1]);
+				}
+				if (i != commands.size() - 1) {
+					commands[i]->switchOutputStream(pipeStreams[i]);
+				}
 			}
 		}
-
 
 		for (size_t i = 0; i < commands.size(); i++) {
 			if (!hasError) {
