@@ -47,6 +47,8 @@ void Echo::runCommand() {
 	for (auto &token : input) {
 		*outputStream << token << endl;
 	}
+
+	cin.clear();
 }
 
 

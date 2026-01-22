@@ -14,12 +14,13 @@ void wordCount::runCommand() {
 				for (int i = 0; i < commandArgs[1].size(); i++) {
 					if (commandArgs[1][i] == ' ') counter++;
 				}
+				if (commandArgs[1] != "") counter++;
 				*outputStream << counter << endl;
 				return;
 			}
 		}
 	}
-
+	
 	//ucitava podatke u listu
 	string temp;
 	vector<string> input;
@@ -40,7 +41,6 @@ void wordCount::runCommand() {
 		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
 		if (redInfo.hasAppend) outputStream = &fs;
 	}
-
 	int counter = 0;
 	for (auto& token : input) {
 		if (commandArgs[0] == "-c") {
@@ -51,10 +51,10 @@ void wordCount::runCommand() {
 			for (char c : token) {
 				if (c == ' ') counter++;
 			}
-			counter++;
+			if (token != "") counter++;
 		}
 	}
-
+	
 	*outputStream << counter << endl;
 
 };

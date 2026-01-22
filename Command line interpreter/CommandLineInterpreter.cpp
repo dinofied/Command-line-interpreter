@@ -11,6 +11,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 	std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
 	while (getline(stream, temp)) {
 		
+
 		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
 		vector<Command*> commands;
 		

@@ -36,6 +36,7 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 			return false;
 		}
 		token = getNextToken(parsedCommand.body, it++);
+		if (!Command::isArgFile(token) && !Command::isArgText(token)) return false;
 		if (Command::isArgFile(token)) {
 			if (parsedCommand.redirection.hasInput) {
 				return false;
@@ -43,7 +44,6 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 			parsedCommand.redirection.hasInput = true;
 			ioInfo.input = StreamManager::streamManagerInstance().createIOStream(token);
 		}
-		if (token != "" && Command::isArgText(token) && pipeInfo.pipeId != 0) return false;
 
 		return true;
 		
