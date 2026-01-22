@@ -7,23 +7,29 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , int charCount) 
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
 	}
+
+	
 	string commandName = parsedCommand.body[0];
 	vector<string> commandArgs = std::vector<std::string>(parsedCommand.body.begin() + 1, parsedCommand.body.end());
 	RedirectionInfo redInfo = parsedCommand.redirection;
 
-
-
-
 	std::istream* input = &std::cin;
-	if (redInfo.inputFile != "") {
-		input = StreamManager::streamManagerInstance().createIOStream(redInfo.inputFile);
-	}
 	std::ostream* output = &std::cout;
-	if (redInfo.outputFile != "") {
-		output = StreamManager::streamManagerInstance().createIOStream(redInfo.outputFile);
+	IOStreamInfo ioInfo = { input, output };
+
+	if (!Inspector::isValidSyntax(parsedCommand, ioInfo)) {
+		cout << "Sintaksna greska." << endl;
+		return nullptr;
 	}
 
-	IOStreamInfo ioInfo = { input, output };
+
+	if (redInfo.inputFile != "") {
+		ioInfo.input = StreamManager::streamManagerInstance().createIOStream(redInfo.inputFile);
+	}
+	if (redInfo.outputFile != "") {
+		ioInfo.output = StreamManager::streamManagerInstance().createIOStream(redInfo.outputFile);
+	}
+
 	
 	if (commandName == "echo") {
 		return (Echo*) new Echo(commandName, commandArgs, redInfo, charCount, ioInfo);

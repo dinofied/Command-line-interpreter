@@ -17,7 +17,7 @@ public:
 	string toString();
 	static bool isArgFile(string arg);
 	static bool isArgText(string arg);
-	string trimmedText(string arg);
+	static string trimmedText(string arg);
 
 	virtual string getName();
 	virtual vector<string> getArgs();

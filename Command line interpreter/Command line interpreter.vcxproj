@@ -130,6 +130,7 @@
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Echo.cpp" />
     <ClCompile Include="Head.cpp" />
+    <ClCompile Include="Inspector.cpp" />
     <ClCompile Include="Lexer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="cmdFactory.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="Date.h" />
     <ClInclude Include="Echo.h" />
     <ClInclude Include="Head.h" />
+    <ClInclude Include="Inspector.h" />
     <ClInclude Include="Lexer.h" />
     <ClInclude Include="cmdFactory.h" />
     <ClInclude Include="Parser.h" />

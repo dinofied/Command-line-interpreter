@@ -55,6 +55,12 @@
     <Filter Include="Header Files\StreamManager">
       <UniqueIdentifier>{1f88c4ac-5c71-4897-8294-f3b57965f58f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Inspector">
+      <UniqueIdentifier>{662294dd-754e-496b-af74-c2622b7f00f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Inspector">
+      <UniqueIdentifier>{a9d553be-a055-4102-a108-b4444587afd8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Echo.cpp">
@@ -117,6 +123,9 @@
     <ClCompile Include="StreamManager.cpp">
       <Filter>Source Files\StreamManager</Filter>
     </ClCompile>
+    <ClCompile Include="Inspector.cpp">
+      <Filter>Source Files\Inspector</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -178,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="StreamManager.h">
       <Filter>Header Files\StreamManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Inspector.h">
+      <Filter>Header Files\Inspector</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

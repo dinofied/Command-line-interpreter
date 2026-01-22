@@ -10,11 +10,15 @@ void StreamManager::deleteAllPointers() {
 	for (auto it : stringStreams) {
 		delete it;
 	}
-
+	ioStreams.clear();
+	stringStreams.clear();
+	
 };
 
 fstream* StreamManager::createIOStream(string fileName) {
-	fstream* newStream = new fstream(fileName);
-	ioStreams.push_back(newStream);
-	return newStream;
+	if (Command::isArgFile(fileName)) {
+		fstream* newStream = new fstream(fileName);
+		ioStreams.push_back(newStream);
+		return newStream;
+	}
 }

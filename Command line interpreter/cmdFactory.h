@@ -13,6 +13,7 @@
 #include "Head.h"
 #include "Tr.h"
 #include "Command.h"
+#include "Inspector.h"
 
 using namespace std;
 class commandFactory {

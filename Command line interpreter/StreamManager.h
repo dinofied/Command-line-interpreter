@@ -5,6 +5,7 @@
 #include <sstream>
 #include <fstream>
 #include "structs.h"
+#include "Command.h"
 
 using namespace std;
 

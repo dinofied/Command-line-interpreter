@@ -31,7 +31,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 			if (i == commands.size() - 1) allowedOutput = true;
 			else allowedOutput = false;
 
-			//trenutno ne radi zbog izmene u poljima za redirekciju komande, popraviti sa stream checkovima
+			
 			if (commands[i]->getRedirectionInfo().hasInput && !allowedInput) {
 				cout << "Greska: Ne moze se izvrsiti redirekcija ulaza na komandama koje nisu prve u nizu." << endl;
 				hasError = true;
@@ -55,6 +55,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		StreamManager::streamManagerInstance().deleteAllPointers();
 		cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
+	
 }
 
 void CommandLineInterpreter::setReadySign(std::string newSign) {
