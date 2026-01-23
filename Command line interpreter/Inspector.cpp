@@ -64,4 +64,28 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		if (pipeInfo.pipeCount != 1) return false;
 	}
 
+	else if (token == "head") {
+		token = getNextToken(parsedCommand.body, it++);
+		if (parsedCommand.body.size() < 2 || parsedCommand.body.size() > 3) return false;
+		if (parsedCommand.body.size() == 3 || pipeInfo.pipeId != 0) {
+			if (parsedCommand.redirection.hasInput || parsedCommand.redirection.hasAppend) return false;
+		}
+		if (token[0] != '-') return false;
+		for (int i = 1; i < token.size(); i++) {
+			if (token[i] < 48 || token[i] > 57) return false;
+		}
+		token = getNextToken(parsedCommand.body, it++);
+		if (token == "") return true;
+		if (Command::isArgText(token)) return false;
+		if (Command::isArgFile(token)) {
+			if (parsedCommand.redirection.hasInput) {
+				return false;
+			}
+			parsedCommand.redirection.hasInput = true;
+			ioInfo.input = StreamManager::streamManagerInstance().createIOStream(token);
+		}
+
+		return true;
+	}
+
 }

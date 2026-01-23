@@ -3,38 +3,38 @@
 
 void Head::runCommand() {
 	int lineCount = stoi(commandArgs[0].substr(1, commandArgs[0].size() - 1));
-	vector<string> out;
-
-	if (isArgFile(commandArgs[1])) {
-		std::ifstream file(commandArgs[1]);
-
-		string temp;
-		while (lineCount-- > 0 && getline(file, temp)) {
-			out.push_back(temp);
+	
+	//namesta da li ce fajl da se overwrituje ili appenduje
+	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
+	if (redInfo.outputFile != "") {
+		std::ifstream checkExistence(redInfo.outputFile);
+		if (!checkExistence) {
+			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
+			return;
 		}
-	}
-	else {
-		string temp;
-		while (lineCount-- > 0 && getline(cin, temp)) {
-			out.push_back(temp);
-		}
+
+		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
+		if (redInfo.hasAppend) outputStream = &fs;
 	}
 
-	for (int i = 0; i < out.size(); i++) {
-		std::cout << out[i] << endl;
+	//ucitava lineCount podataka u listu
+	string temp;
+	vector<string> input;
+	while (getline(*inputStream, temp) && lineCount > 0) {
+		if (temp == "EOF") break;
+		input.push_back(temp);
+		lineCount--;
 	}
+
+	for (auto& token : input) {
+		*outputStream << token << endl;
+	}
+
+	cin.clear();
 
 };
 
 bool Head::isValidBody() {
-
-	if (commandArgs[0].size() < 2 || commandArgs[0].size() > 6 || commandArgs[0][0] != '-') return false;
-	for (int i = 1; i < commandArgs[0].size(); i++) {
-		if (commandArgs[0][i] < 48 || commandArgs[0][i] > 57) return false;
-	}
-	if (commandArgs.size() == 2) {
-		if (!isArgFile(commandArgs[1])) return false;
-	}
 
 	return true;
 };

@@ -26,15 +26,6 @@ void Echo::runCommand() {
 		}
 	}
 
-	//provera da li fajl u koji redirekcija gleda postoji
-	/*if (redInfo.inputFile != "") {
-		std::ifstream checkExistence(redInfo.inputFile);
-		if (!checkExistence) {
-			cout << "Fajl ne postoji: " << redInfo.inputFile << endl;
-			return;
-		}
-	}*/
-
 	//ucitava podatke u listu
 	string temp;
 	vector<string> input;

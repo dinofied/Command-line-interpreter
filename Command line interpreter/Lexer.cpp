@@ -48,7 +48,6 @@ vector<string> Lexer::divideWords(string inputLine) {
 		}
 	}
 	if (word != "") words.push_back(word);
-	for (auto word : words) cout << "LEXER: " << word << endl;
 	return words;
 }
 
