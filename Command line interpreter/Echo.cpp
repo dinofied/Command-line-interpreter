@@ -19,12 +19,21 @@ void Echo::runCommand() {
 		if (redInfo.hasAppend) outputStream = &fs;
 	}
 
+
+	//provera da li fajl za upis postoji
+	std::fstream check(redInfo.inputFile);
+	if (!check) {
+		cout << "Fajl ne posotji." << endl;
+		return;
+	}
+
 	if (commandArgs.size()) {
 		if (Command::isArgText(commandArgs[0])) {
 			*outputStream << Command::trimmedText(commandArgs[0]) << endl;
 			return;
 		}
 	}
+
 
 	//ucitava podatke u listu
 	string temp;

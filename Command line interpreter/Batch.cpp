@@ -2,17 +2,22 @@
 
 void Batch::runCommand() {
 
-	std::ifstream batchInput(commandArgs[0]);
+	//provera da li fajl za upis postoji
+	std::fstream check(redInfo.inputFile);
+	if (!check) {
+		cout << "Fajl ne posotji." << endl;
+		return;
+	}
 
 	CommandLineInterpreter::terminalInstance().isBatchSwitch();
-	CommandLineInterpreter::terminalInstance().run(batchInput);
+	CommandLineInterpreter::terminalInstance().run(*inputStream);
 	CommandLineInterpreter::terminalInstance().isBatchSwitch();
+
+	cin.clear();
 };
 
 bool Batch::isValidBody() {
-	if (commandArgs.size() != 1) return false;
-	if (Command::isArgFile(commandArgs[0])) return true;
-	return false;
+	return true;
 };
 
 void Batch::errReport() {

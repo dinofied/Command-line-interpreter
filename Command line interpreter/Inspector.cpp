@@ -10,7 +10,7 @@ string Inspector::getNextToken(vector<string>& tokens, int tokenId) {
 
 };
 
-bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo, PipeInfo pipeInfo) {
+bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo, PipeInfo pipeInfo, StreamManager& streamManager) {
 	int it = 0;
 	string token = getNextToken(parsedCommand.body, it++);
 
@@ -22,7 +22,7 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 				return false;
 			}
 			parsedCommand.redirection.hasInput = true;
-			ioInfo.input = StreamManager::streamManagerInstance().createIOStream(token);
+			ioInfo.input = streamManager.createIOStream(token);
 		}
 		if (token != "" && Command::isArgText(token) && pipeInfo.pipeId != 0) return false;
 
@@ -42,7 +42,7 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 				return false;
 			}
 			parsedCommand.redirection.hasInput = true;
-			ioInfo.input = StreamManager::streamManagerInstance().createIOStream(token);
+			ioInfo.input = streamManager.createIOStream(token);
 		}
 
 		return true;
@@ -82,10 +82,23 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 				return false;
 			}
 			parsedCommand.redirection.hasInput = true;
-			ioInfo.input = StreamManager::streamManagerInstance().createIOStream(token);
+			ioInfo.input = streamManager.createIOStream(token);
 		}
 
 		return true;
+	}
+
+	else if (token == "batch") {
+		token = getNextToken(parsedCommand.body, it++);
+		if (pipeInfo.pipeCount != 1) return false;
+		if (parsedCommand.body.size() != 2) return false;
+		if (!Command::isArgFile(token)) return false;
+		if (parsedCommand.redirection.hasAppend || parsedCommand.redirection.hasInput || parsedCommand.redirection.hasOutput) return false;
+		parsedCommand.redirection.hasInput = true;
+		ioInfo.input = streamManager.createIOStream(token);
+
+		return true;
+		
 	}
 
 }

@@ -11,10 +11,7 @@ using namespace std;
 
 class StreamManager {
 public:
-	static StreamManager& streamManagerInstance() {
-		static StreamManager instance;
-		return instance;
-	}
+	
 
 	~StreamManager();
 
@@ -25,7 +22,6 @@ public:
 
 
 private:
-	StreamManager() {};
 	vector<fstream*> ioStreams;
 	vector<stringstream*> stringStreams;
 

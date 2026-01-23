@@ -19,7 +19,7 @@ using namespace std;
 class commandFactory {
 public:
 
-	static Command* createCmd(ParsedCommand parsedCommand, PipeInfo pipeInfo);
+	static Command* createCmd(ParsedCommand parsedCommand, PipeInfo pipeInfo, StreamManager& streamManager);
 
 private:
 	string commandName;

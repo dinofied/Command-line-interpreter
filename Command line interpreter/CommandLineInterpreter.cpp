@@ -11,12 +11,12 @@ void CommandLineInterpreter::run(std::istream& stream) {
 	std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
 	while (getline(stream, temp)) {
 		
-
+		StreamManager streamManager;
 		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
 		vector<Command*> commands;
 		
 		for (size_t i = 0; i < pipes.size(); i++) {
-			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), { i, pipes.size()}));
+			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), { i, pipes.size()}, streamManager));
 		}
 
 		bool hasError = false;
@@ -47,7 +47,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 			vector<stringstream*> pipeStreams;
 
 			for (int i = 0; i < commands.size() - 1; i++) {
-				pipeStreams.push_back(StreamManager::streamManagerInstance().createStringStream());
+				pipeStreams.push_back(streamManager.createStringStream());
 			}
 
 			for (int i = 0; i < commands.size(); i++) {
@@ -69,7 +69,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 		}
 
 		
-		StreamManager::streamManagerInstance().deleteAllPointers();
+		streamManager.deleteAllPointers();
 		std::cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 	
