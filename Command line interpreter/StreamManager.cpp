@@ -4,7 +4,10 @@
 void StreamManager::deleteAllPointers() {
 
 	for (auto it : ioStreams) {
-		delete it;
+		if (it) {
+			if (it->is_open()) it->close();
+			delete it;
+		}
 	}
 
 	for (auto it : stringStreams) {
@@ -18,9 +21,14 @@ void StreamManager::deleteAllPointers() {
 fstream* StreamManager::createIOStream(string fileName) {
 	if (Command::isArgFile(fileName)) {
 		fstream* newStream = new fstream(fileName);
+		if (!newStream->is_open()) {
+			delete newStream;
+			return nullptr;
+		}
 		ioStreams.push_back(newStream);
 		return newStream;
 	}
+	return nullptr;
 }
 
 stringstream* StreamManager::createStringStream() {
@@ -28,3 +36,7 @@ stringstream* StreamManager::createStringStream() {
 	stringStreams.push_back(newStream);
 	return newStream;
 };
+
+StreamManager::~StreamManager() {
+	deleteAllPointers();
+}

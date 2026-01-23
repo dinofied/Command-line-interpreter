@@ -56,5 +56,12 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		return true;
 	}
 
+	else if (token == "prompt") {
+		token = getNextToken(parsedCommand.body, it++);
+		if (parsedCommand.body.size() != 2) return false;
+		if (!Command::isArgText(token)) return false;
+		if (parsedCommand.redirection.hasAppend || parsedCommand.redirection.hasInput || parsedCommand.redirection.hasOutput) return false;
+		if (pipeInfo.pipeCount != 1) return false;
+	}
 
 }

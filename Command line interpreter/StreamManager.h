@@ -16,6 +16,8 @@ public:
 		return instance;
 	}
 
+	~StreamManager();
+
 	void deleteAllPointers();
 
 	fstream* createIOStream(string fileName);
