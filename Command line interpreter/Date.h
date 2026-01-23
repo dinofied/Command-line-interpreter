@@ -15,5 +15,7 @@ private:
 	virtual bool isValidBody();
 
 	virtual void errReport();
+
+	string twoDigits(int i);
 };
 

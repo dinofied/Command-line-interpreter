@@ -6,6 +6,19 @@ using namespace std;
 
 void Echo::runCommand() {
 
+	//namesta da li ce fajl da se overwrituje ili appenduje
+	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
+	if (redInfo.outputFile != "") {
+		std::ifstream checkExistence(redInfo.outputFile);
+		if (!checkExistence) {
+			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
+			return;
+		}
+
+		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
+		if (redInfo.hasAppend) outputStream = &fs;
+	}
+
 	if (commandArgs.size()) {
 		if (Command::isArgText(commandArgs[0])) {
 			*outputStream << Command::trimmedText(commandArgs[0]) << endl;
@@ -28,19 +41,6 @@ void Echo::runCommand() {
 	while (getline(*inputStream, temp)){
 		if (temp == "EOF") break;
 		input.push_back(temp);
-	}
-
-	//namesta da li ce fajl da se overwrituje ili appenduje
-	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
-	if (redInfo.outputFile != "") {
-		std::ifstream checkExistence(redInfo.outputFile);
-		if (!checkExistence) {
-			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
-			return;
-		}
-
-		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
-		if (redInfo.hasAppend) outputStream = &fs;
 	}
 
 

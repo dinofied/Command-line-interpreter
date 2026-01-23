@@ -49,11 +49,12 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		
 	}
 
-
-	else if (token == "time") {
+	else if (token == "time" || token == "date") {
 		if (parsedCommand.body.size() > 1) return false;
 		if (parsedCommand.redirection.hasInput) return false;
 		if (pipeInfo.pipeId != 0) return false;
 		return true;
 	}
+
+
 }
