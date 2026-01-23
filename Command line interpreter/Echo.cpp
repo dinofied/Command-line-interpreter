@@ -19,23 +19,21 @@ void Echo::runCommand() {
 		if (redInfo.hasAppend) outputStream = &fs;
 	}
 
-
-	//provera da li fajl za upis postoji
-	if (redInfo.inputFile != "") {
-		std::fstream check(redInfo.inputFile);
-		if (!check) {
-			cout << "Fajl ne posotji." << endl;
-			return;
-		}
-	}
-
+	//slucaj gde je argument text + provera da li fajl postoji ako je argument fajl
 	if (commandArgs.size()) {
 		if (Command::isArgText(commandArgs[0])) {
 			*outputStream << Command::trimmedText(commandArgs[0]) << endl;
 			return;
 		}
+		if (Command::isArgFile(commandArgs[0])) {
+			std::ifstream test(commandArgs[0]);
+			if (!test) {
+				std::cout << "Fajl ne postoji:" << endl;
+				std::cout << commandArgs[0] << endl;
+				return;
+			}
+		}
 	}
-
 
 	//ucitava podatke u listu
 	string temp;
@@ -44,7 +42,6 @@ void Echo::runCommand() {
 		if (temp == "EOF") break;
 		input.push_back(temp);
 	}
-
 
 	for (auto &token : input) {
 		*outputStream << token << endl;

@@ -7,9 +7,15 @@ vector<string> Lexer::divideWords(string inputLine) {
 	for (int i = 0; i < inputLine.size(); i++) {
 
 		if (inputLine[i] == '"') {
+			if (word != "") {
+				words.push_back(word);
+				word = "";
+			}
 			findNextQuotationMark(i, word, inputLine);
+			words.push_back(word);
+			word = "";
 		}
-
+		if (i >= inputLine.size()) break;
 		if (inputLine[i] == '>') {
 			if (word != "") {
 				words.push_back(word);
@@ -59,4 +65,9 @@ void Lexer::findNextQuotationMark(int& iterator, string& word, string& inputLine
 		word += inputLine[iterator];
 		iterator++;
 	}
-};
+	if (iterator < inputLine.size()) {
+		word += inputLine[iterator];
+		iterator++;
+	}
+
+}

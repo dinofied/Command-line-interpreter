@@ -11,9 +11,7 @@ void Rm::runCommand() {
 
 bool Rm::isValidBody() {
 
-	if (commandArgs.size() != 1) return false;
-	if (Command::isArgFile(commandArgs[0])) return true;
-	return false;
+	return true;
 
 };
 

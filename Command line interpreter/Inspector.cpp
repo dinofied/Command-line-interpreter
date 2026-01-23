@@ -16,7 +16,9 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 
 	if (token == "echo") {
 		if (parsedCommand.body.size() > 2) return false;
+		if (parsedCommand.body.size() == 2 && parsedCommand.redirection.hasInput) return false;
 		token = getNextToken(parsedCommand.body, it++);
+		if (!Command::isArgFile(token) && !Command::isArgText(token)) return false;
 		if (Command::isArgFile(token)) {
 			if (parsedCommand.redirection.hasInput) {
 				return false;
@@ -46,7 +48,7 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		}
 
 		return true;
-		
+
 	}
 
 	else if (token == "time" || token == "date") {
@@ -89,16 +91,32 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 	}
 
 	else if (token == "batch") {
+		if (parsedCommand.body.size() > 2) return false;
+		if (parsedCommand.body.size() == 2 && parsedCommand.redirection.hasInput) return false;
+		token = getNextToken(parsedCommand.body, it++);
+		if (!Command::isArgFile(token) && !Command::isArgText(token)) return false;
+		if (Command::isArgFile(token)) {
+			if (parsedCommand.redirection.hasInput) {
+				return false;
+			}
+			parsedCommand.redirection.hasInput = true;
+			ioInfo.input = streamManager.createIOStream(token);
+		}
+		if (token != "" && Command::isArgText(token) && pipeInfo.pipeId != 0) return false;
+		if (pipeInfo.pipeId == 0 && parsedCommand.body.size() == 1 && !parsedCommand.redirection.hasInput) return false;
+
+		return true;
+
+	}
+
+	else if (token == "touch" || token == "rm" || token == "truncate") {
 		token = getNextToken(parsedCommand.body, it++);
 		if (pipeInfo.pipeCount != 1) return false;
 		if (parsedCommand.body.size() != 2) return false;
+		if (parsedCommand.redirection.hasInput || parsedCommand.redirection.hasAppend || parsedCommand.redirection.hasOutput) return false;
 		if (!Command::isArgFile(token)) return false;
-		if (parsedCommand.redirection.hasInput) return false;
-		parsedCommand.redirection.hasInput = true;
-		ioInfo.input = streamManager.createIOStream(token);
-
-		return true;
 		
+		return true;
 	}
 
 }
