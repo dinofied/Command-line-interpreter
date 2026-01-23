@@ -30,6 +30,7 @@ void wordCount::runCommand() {
 	}
 
 	//namesta da li ce fajl da se overwrituje ili appenduje
+	
 	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
 	if (redInfo.outputFile != "") {
 		std::ifstream checkExistence(redInfo.outputFile);

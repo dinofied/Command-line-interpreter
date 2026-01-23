@@ -16,5 +16,7 @@ private:
 
 	virtual void errReport();
 
+	string twoDigits(int i);
+
 };
 

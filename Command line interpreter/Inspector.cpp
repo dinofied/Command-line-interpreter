@@ -48,4 +48,12 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		return true;
 		
 	}
+
+
+	else if (token == "time") {
+		if (parsedCommand.body.size() > 1) return false;
+		if (parsedCommand.redirection.hasInput) return false;
+		if (pipeInfo.pipeId != 0) return false;
+		return true;
+	}
 }
