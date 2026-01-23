@@ -3,15 +3,16 @@
 void Batch::runCommand() {
 
 	//provera da li fajl za upis postoji
-	std::fstream check(redInfo.inputFile);
-	if (!check) {
-		cout << "Fajl ne posotji." << endl;
-		return;
+	if (redInfo.inputFile != "") {
+		std::fstream check(redInfo.inputFile);
+		if (!check) {
+			cout << "Fajl ne posotji." << endl;
+			return;
+		}
 	}
 
-	CommandLineInterpreter::terminalInstance().isBatchSwitch();
-	CommandLineInterpreter::terminalInstance().run(*inputStream);
-	CommandLineInterpreter::terminalInstance().isBatchSwitch();
+
+	CommandLineInterpreter::terminalInstance().run(*inputStream, *outputStream, true);
 
 	cin.clear();
 };

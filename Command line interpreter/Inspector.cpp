@@ -93,7 +93,7 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		if (pipeInfo.pipeCount != 1) return false;
 		if (parsedCommand.body.size() != 2) return false;
 		if (!Command::isArgFile(token)) return false;
-		if (parsedCommand.redirection.hasAppend || parsedCommand.redirection.hasInput || parsedCommand.redirection.hasOutput) return false;
+		if (parsedCommand.redirection.hasInput) return false;
 		parsedCommand.redirection.hasInput = true;
 		ioInfo.input = streamManager.createIOStream(token);
 

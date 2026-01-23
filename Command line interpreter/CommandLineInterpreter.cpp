@@ -1,22 +1,22 @@
 #include "CommandLineInterpreter.h"
 
-void CommandLineInterpreter::run(std::istream& stream) {
+void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool inBatch) {
 
-	if (!stream) {
+	if (!input) {
 		std::cout << "Fajl nije pronadjen." << endl;
 		return;
 	}
 	string temp;
 
-	std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
-	while (getline(stream, temp)) {
+	if (!inBatch) std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
+	while (getline(input, temp)) {
 		
 		StreamManager streamManager;
 		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
 		vector<Command*> commands;
 		
 		for (size_t i = 0; i < pipes.size(); i++) {
-			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), { i, pipes.size()}, streamManager));
+			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), { i, pipes.size()}, streamManager, output));
 		}
 
 		bool hasError = false;
@@ -70,7 +70,7 @@ void CommandLineInterpreter::run(std::istream& stream) {
 
 		
 		streamManager.deleteAllPointers();
-		std::cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
+		if (!inBatch) std::cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
 	}
 	
 }
@@ -82,11 +82,5 @@ void CommandLineInterpreter::setReadySign(std::string newSign) {
 
 std::string CommandLineInterpreter::getReadySign() {
 
-	if (!isBatch) return readySign + ' ';
-	else return "";
-}
-
-void CommandLineInterpreter::isBatchSwitch() {
-	if (this->isBatch) isBatch = false;
-	else isBatch = true;
+	return readySign + ' ';
 }

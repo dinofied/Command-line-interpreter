@@ -4,6 +4,6 @@
 
 int main() {
 
-	CommandLineInterpreter::terminalInstance().run(std::cin);
+	CommandLineInterpreter::terminalInstance().run(std::cin, std::cout, false);
 	
 }

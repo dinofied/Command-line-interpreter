@@ -2,7 +2,7 @@
 
 
 
-Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeInfo, StreamManager& streamManager) {
+Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeInfo, StreamManager& streamManager, std::ostream& outputStream) {
 	if (!parsedCommand.body.size()) {
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
@@ -10,7 +10,7 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 
 
 	std::istream* input = &std::cin;
-	std::ostream* output = &std::cout;
+	std::ostream* output = &outputStream;
 	IOStreamInfo ioInfo = { input, output };
 
 	if (!Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo, streamManager)) {

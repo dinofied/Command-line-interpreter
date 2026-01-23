@@ -18,12 +18,11 @@ public:
 		return instance;
 	}
 
-	void run(std::istream& stream);
+	void run(std::istream& input, std::ostream& output, bool inBatch);
 
 	string getReadySign();
 	void setReadySign(string input);
 
-	void isBatchSwitch();
 
 private:
 	string readySign;
