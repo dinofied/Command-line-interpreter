@@ -119,4 +119,29 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		return true;
 	}
 
+	else if (token == "tr") {
+		token = getNextToken(parsedCommand.body, it++);
+		if (token.size() < 3) return false;
+		if (parsedCommand.body.size() < 2 || parsedCommand.body.size() > 4) return false;
+		if ((Command::isArgText(token) || Command::isArgFile(token)) && parsedCommand.redirection.hasInput) return false;
+		if (Command::isArgFile(token)) {
+			parsedCommand.redirection.hasInput = true;
+			ioInfo.input = streamManager.createIOStream(token);
+		}
+		else if (token[0] == '-' && token[1] == '"' && token[token.size() - 1] == '"') {
+			token = getNextToken(parsedCommand.body, it++);
+			if ((token != "" && Command::isArgText(token)) || token == "") return true;
+			else return false;
+		}
+		
+		token = getNextToken(parsedCommand.body, it++);
+		if (token[0] == '-' && token[1] == '"' && token[token.size() - 1] == '"') {
+			token = getNextToken(parsedCommand.body, it++);
+			if ((token != "" && Command::isArgText(token)) || token == "") return true;
+			else return false;
+		}
+		else return false;
+
+	}
+
 }

@@ -15,6 +15,6 @@ private:
 
 	virtual void errReport();
 
-
+	string editLine(string input, string what, string with);
 };
 

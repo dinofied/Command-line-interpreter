@@ -15,6 +15,12 @@ vector<string> Lexer::divideWords(string inputLine) {
 			words.push_back(word);
 			word = "";
 		}
+		if (inputLine[i] == '-') {
+			while (i < inputLine.size() && inputLine[i] != ' ') {
+				word += inputLine[i];
+				i++;
+			}
+		}
 		if (i >= inputLine.size()) break;
 		if (inputLine[i] == '>') {
 			if (word != "") {
