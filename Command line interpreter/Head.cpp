@@ -2,7 +2,7 @@
 
 
 void Head::runCommand() {
-	int lineCount = stoi(commandArgs[0].substr(1, commandArgs[0].size() - 1));
+	int lineCount = stoi(commandArgs[0].substr(2, commandArgs[0].size() - 2));
 	
 	//namesta da li ce fajl da se overwrituje ili appenduje
 	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
@@ -20,14 +20,16 @@ void Head::runCommand() {
 	//ucitava lineCount podataka u listu
 	string temp;
 	vector<string> input;
-	while (getline(*inputStream, temp) && lineCount > 0) {
+	while (getline(*inputStream, temp)) {
 		if (temp == "EOF") break;
 		input.push_back(temp);
-		lineCount--;
 	}
 
 	for (auto& token : input) {
-		*outputStream << token << endl;
+		if (lineCount > 0) {
+			*outputStream << token << endl;
+			lineCount--;
+		}
 	}
 
 	cin.clear();

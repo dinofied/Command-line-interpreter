@@ -16,10 +16,16 @@ vector<string> Lexer::divideWords(string inputLine) {
 			word = "";
 		}
 		if (inputLine[i] == '-') {
-			while (i < inputLine.size() && inputLine[i] != ' ') {
-				word += inputLine[i];
-				i++;
+			while (i < inputLine.size() && inputLine[i] != ' ' && inputLine[i] != '\t'){
+				if (inputLine[i] == '"') {
+					findNextQuotationMark(i, word, inputLine);
+				}
+				else {
+					word += inputLine[i++];
+				}
 			}
+			words.push_back(word);
+			word = "";
 		}
 		if (i >= inputLine.size()) break;
 		if (inputLine[i] == '>') {
@@ -60,6 +66,7 @@ vector<string> Lexer::divideWords(string inputLine) {
 		}
 	}
 	if (word != "") words.push_back(word);
+	
 	return words;
 }
 

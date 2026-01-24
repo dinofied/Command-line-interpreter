@@ -44,6 +44,7 @@ void wordCount::runCommand() {
 	}
 	int counter = 0;
 	for (auto& token : input) {
+		if (token == "EOF") continue;
 		if (commandArgs[0] == "-c") {
 			counter += token.size();
 		}
@@ -57,7 +58,7 @@ void wordCount::runCommand() {
 	}
 	
 	*outputStream << counter << endl;
-
+	cin.clear();
 };
 
 //checks the validity of command arguments

@@ -72,8 +72,8 @@ bool Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioInfo
 		if (parsedCommand.body.size() == 3 || pipeInfo.pipeId != 0) {
 			if (parsedCommand.redirection.hasInput || parsedCommand.redirection.hasAppend) return false;
 		}
-		if (token[0] != '-') return false;
-		for (int i = 1; i < token.size(); i++) {
+		if (token[0] != '-' || token[1] != 'n') return false;
+		for (int i = 2; i < token.size(); i++) {
 			if (token[i] < 48 || token[i] > 57) return false;
 		}
 		token = getNextToken(parsedCommand.body, it++);

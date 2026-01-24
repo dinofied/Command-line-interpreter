@@ -36,6 +36,7 @@ void Tr::runCommand() {
 	while (getline(*inputStream, temp)) {
 		string with = "";
 		string what;
+		
 		if (Command::isArgFile(commandArgs[0])) {
 			what = commandArgs[1];
 			if (commandArgs.size() == 3) with = Command::trimmedText(commandArgs[2]);
