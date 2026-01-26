@@ -1,0 +1,5 @@
+echo "*" 
+echo "Batch Test"
+echo "Batch Test" | wc -w
+date
+time

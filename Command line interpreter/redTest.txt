@@ -1,0 +1,14 @@
+echo "solaja" < andrej
+echo "solaja" < andrej.txt
+echo "solaja" < andrej.txt > solaja
+echo "solaja" < andrej.txt >> solaja
+echo "solaja" < andrej.txt > solaja.txt
+echo "solaja" < andrej.txt >> solaja.txt
+echo "solaja" < andrej.txt < solaja
+echo "solaja" < andrej.txt < solaja.txt
+echo "solaja" > andrej.txt > solaja
+echo "solaja" > andrej.txt > solaja.txt
+echo "solaja" >> andrej.txt >> solaja
+echo "solaja" >> andrej.txt >> solaja.txt
+echo "solaja" < andrej.txt > solaja.txt > solaja.txt
+echo "solaja" > andrej.txt >> andrej.txt

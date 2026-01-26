@@ -1,0 +1,29 @@
+echo "Solaja"
+echo s"Solaja"
+echo "solaja"sss
+echo "solaja
+echo 
+echo "solaja" a
+echo sdsd sds
+echo 	"tab"
+echo dssd"sddsds
+dssd	
+echo solaja.txt
+echo solaja solaja.txt
+echo helloWorlds.txt
+time
+time solaja
+time solaja.txt
+time "solaja"
+date
+date solaja
+wc -w
+wc -w "solaja andreja"
+wc -c "solaja andreja"
+wc -w helloWorlds.txt
+wc -c helloWorlds.txt
+wc -w andrej.txt
+touch
+touch helloWorlds.txt
+touch solaja.txt
+touch solaja.txt
