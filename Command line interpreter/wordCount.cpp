@@ -61,29 +61,3 @@ void wordCount::runCommand() {
 	cin.clear();
 };
 
-//checks the validity of command arguments
-bool wordCount::isValidBody() {
-	return true;
-};
-
-
-//reports the type of error
-void wordCount::errReport() {
-
-	if (commandArgs.size() > 2) {
-		std::cout << "Uneto previse argumenata." << endl;
-	}
-	else if (commandArgs.size() < 1) {
-		std::cout << "Uneto premalo argumenata." << endl;
-	}
-	else std::cout << "Greska pri unosu argumenata komande:" << endl;
-
-	std::cout << Command::toString() << std::endl;
-	Command::errPlacesReport();
-
-};
-
-bool wordCount::determineMode() {
-	if (commandArgs[0] == "-w") return false;
-	return true;
-};

@@ -28,16 +28,3 @@ string Date::twoDigits(int i) {
     digits += to_string(i);
     return digits;
 };
-
-bool Date::isValidBody() {
-
-    return true;
-
-};
-
-void Date::errReport() {
-	if (commandArgs.size()) {
-		std::cout << "Uneto previse argumenata." << endl;
-		std::cout << toString() << endl;
-	}
-};

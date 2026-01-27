@@ -10,9 +10,8 @@ public:
 	static std::vector<std::string> breakPipes(std::string inputLine);
 
 private:
-	Collector() {};
 
-	
+	Collector() {};
 };
 
 

@@ -31,16 +31,3 @@ string Time::twoDigits(int i) {
 	return digits;
 };
 
-bool Time::isValidBody() {
-
-	return true;
-
-};
-
-void Time::errReport() {
-	if (commandArgs.size()) {
-		std::cout << "Uneto previse argumenata." << endl;
-		std::cout << toString() << endl;
-
-	}
-};

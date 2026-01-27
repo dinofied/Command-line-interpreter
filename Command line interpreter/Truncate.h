@@ -4,18 +4,10 @@
 
 class Truncate : public Command{
 public:
-	Truncate(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, charCount, ioInfo) {
+	Truncate(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
 
 	};
 
-private:
-
 	virtual void runCommand();
-
-	virtual bool isValidBody();
-
-	virtual void errReport();
-
-
 };
 

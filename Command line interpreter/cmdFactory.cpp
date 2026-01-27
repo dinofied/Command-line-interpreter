@@ -34,37 +34,37 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 	
 	//silne nule su na mestu nekadasnjeg charCounta koji se trenutno ne koristi (error handling)
 	if (commandName == "echo") {
-		return (Echo*) new Echo(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Echo*) new Echo(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "time") {
-		return (Time*) new Time(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Time*) new Time(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "date") {
-		return (Date*) new Date(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Date*) new Date(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "wc") {
-		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "touch") {
-		return (Touch*) new Touch(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Touch*) new Touch(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "prompt") {
-		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "batch") {
-		return (Batch*) new Batch(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Batch*) new Batch(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "truncate") {
-		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "rm") {
-		return (Rm*) new Rm(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Rm*) new Rm(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "head") {
-		return (Head*) new Head(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Head*) new Head(commandName, commandArgs, redInfo, ioInfo);
 	}
 	if (commandName == "tr") {
-		return (Tr*) new Tr(commandName, commandArgs, redInfo, 0, ioInfo);
+		return (Tr*) new Tr(commandName, commandArgs, redInfo, ioInfo);
 	}
 
 	

@@ -49,14 +49,3 @@ void Echo::runCommand() {
 
 	cin.clear();
 }
-
-
-void Echo::errReport() {
-
-	cout << "Greska: Nevalidni argumenti za echo komandu." << endl;
-
-};
-
-bool Echo::isValidBody() {
-	return true;
-};

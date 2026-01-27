@@ -3,18 +3,12 @@
 
 class Tr : public Command{
 public:
-	Tr(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, int charCount, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, charCount, ioInfo) {
+	Tr(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
 
 	};
 
-private:
-
 	virtual void runCommand();
-
-	virtual bool isValidBody();
-
-	virtual void errReport();
-
+private:
 	string editLine(string input, string what, string with);
 };
 

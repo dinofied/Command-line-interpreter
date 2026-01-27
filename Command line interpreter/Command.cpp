@@ -1,47 +1,7 @@
 #include "Command.h"
 #include <iostream>
 
-void Command::execute() {
-
-	if (isValidBody()) {
-
-		runCommand();
-	}
-	else errReport();
-};
-
-//used for pointing out the report location when reporting the error
-void Command::errPlacesReport() {
-	if (!errPlaces.size()) return;
-	int errPlace = 0;
-	int err = errPlaces[errPlace];
-
-	for (int i = 0; i < charCount; i++) {
-		if (i == err) {
-			std::cout << '^';
-			errPlace++;
-			if (errPlace < errPlaces.size()) {
-				err = errPlaces[errPlace];
-			}
-		}
-		else std::cout << " ";
-	} 
-	std::cout << std::endl;
-
-};
-
-//returns the command with args in string format
-string Command::toString() {
-	string cmd = "";
-	cmd += commandName;
-	for (int i = 0; i < commandArgs.size(); i++) {
-		cmd += ' ';
-		cmd += commandArgs[i];
-	}
-	return cmd;
-}
-
-//checks if the last argument is a file
+//checks if the input argument is a file
 bool Command::isArgFile(string arg) {
 	int argSize = arg.size() - 1;
 	if (argSize < 4) return false;
@@ -52,7 +12,7 @@ bool Command::isArgFile(string arg) {
 	return false;
 }
 
-//checks if the last argument is a textual arg
+//checks if the input argument is in quotes
 bool Command::isArgText(string arg) {
 	int l = -1, r = -1;
 

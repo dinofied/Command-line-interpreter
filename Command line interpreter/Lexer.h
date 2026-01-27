@@ -12,8 +12,8 @@ public:
 
 
 private:
-	Lexer() {};
 
+	Lexer() {};
 };
 
 

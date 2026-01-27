@@ -35,23 +35,3 @@ void Head::runCommand() {
 	cin.clear();
 
 };
-
-bool Head::isValidBody() {
-
-	return true;
-};
-
-void Head::errReport() {
-
-	if (commandArgs.size() > 2) {
-		std::cout << "Uneto previse argumenata." << endl;
-	}
-	else if (commandArgs.size() < 1) {
-		std::cout << "Uneto premalo argumenata." << endl;
-	}
-	else std::cout << "Greska pri unosu argumenata komande:" << endl;
-
-	std::cout << Command::toString() << std::endl;
-	Command::errPlacesReport();
-
-};

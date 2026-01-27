@@ -8,24 +8,3 @@ void Rm::runCommand() {
 	};
 
 };
-
-bool Rm::isValidBody() {
-
-	return true;
-
-};
-
-void Rm::errReport() {
-
-	if (commandArgs.size() > 1) {
-		std::cout << "Uneto previse argumenata." << endl;
-	}
-	else if (commandArgs.size() < 1) {
-		std::cout << "Uneto premalo argumenata." << endl;
-	}
-	else std::cout << "Greska pri unosu argumenata komande:" << endl;
-
-	std::cout << Command::toString() << std::endl;
-	Command::errPlacesReport();
-
-};

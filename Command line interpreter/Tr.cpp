@@ -55,24 +55,6 @@ void Tr::runCommand() {
 
 };
 
-bool Tr::isValidBody() {
-
-	return true;
-};
-
-void Tr::errReport() {
-	if (commandArgs.size() > 3) {
-		std::cout << "Uneto previse argumenata." << endl;
-	}
-	else if (commandArgs.size() < 1) {
-		std::cout << "Uneto premalo argumenata." << endl;
-	}
-	else std::cout << "Greska pri unosu argumenata komande:" << endl;
-
-	std::cout << Command::toString() << std::endl;
-	Command::errPlacesReport();
-};
-
 string Tr::editLine(string input, string what, string with) {
 	if (what == "-\"\"") return input;
 	what = what.substr(2, what.size() - 3);

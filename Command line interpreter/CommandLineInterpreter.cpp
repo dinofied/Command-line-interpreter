@@ -64,7 +64,7 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 
 		for (size_t i = 0; i < commands.size(); i++) {
 			if (!hasError) {
-				commands[i]->execute();
+				commands[i]->runCommand();
 				if (i != commands.size() - 1) std::cout << endl;
 			}
 			delete commands[i];
