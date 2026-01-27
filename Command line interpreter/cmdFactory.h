@@ -22,10 +22,6 @@ public:
 	static Command* createCmd(ParsedCommand parsedCommand, PipeInfo pipeInfo, StreamManager& streamManager, std::ostream& outputStream);
 
 private:
-	string commandName;
-	vector<string> commandArgs;
-
-	static void nameDoesntExsist(string commandName, vector<string> commandArgs);
 
 	commandFactory() {};
 

@@ -1,3 +1,2 @@
-echo "cao"
-echo "usao sam"
-echo "promenjen sam" > gojic.txt
+cao
+cao

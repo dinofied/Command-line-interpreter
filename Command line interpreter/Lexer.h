@@ -6,13 +6,9 @@ using namespace std;
 
 class Lexer {
 public:
-	static Lexer& lexerInstance() {
-		static Lexer instance;
-		return instance;
-	};
 
-	vector<string> divideWords(string inputLine);
-	void findNextQuotationMark(int& num, string& word, string& inputLine);
+	static vector<string> divideWords(string inputLine);
+	static void findNextQuotationMark(int& num, string& word, string& inputLine);
 
 
 private:

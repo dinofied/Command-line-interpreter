@@ -6,26 +6,28 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 		std::cout << "Fajl nije pronadjen." << endl;
 		return;
 	}
-	string temp;
-
 	if (!inBatch) std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
+
+	string temp;
 	while (getline(input, temp)) {
 		
 		StreamManager streamManager;
-		vector<string> pipes = Collector::collectorInstance().breakPipes(temp);
+		vector<string> pipes = Collector::breakPipes(temp);
 		vector<Command*> commands;
 		
 		for (size_t i = 0; i < pipes.size(); i++) {
-			commands.push_back(commandFactory::createCmd(Parser::parserInstance().parsedCommand(Lexer::lexerInstance().divideWords(pipes[i])), { i, pipes.size()}, streamManager, output));
+			commands.push_back(commandFactory::createCmd(Parser::parsedCommand(Lexer::divideWords(pipes[i])), { i, pipes.size()}, streamManager, output));
 		}
 
+		//checking if the created command exists and checking its privelages based on the pipe its in
 		bool hasError = false;
 		for (int i = 0; i < commands.size(); i++) {
 			if (commands[i] == nullptr) {
 				std::cout << "Sintaksna greska u pipu broj: " << i + 1 << endl;
 				hasError = true;
-				break;
+				continue;
 			}
+
 			bool allowedInput = false, allowedOutput = false;
 			if (i == 0) allowedInput = true;
 			if (i == commands.size() - 1) allowedOutput = true;

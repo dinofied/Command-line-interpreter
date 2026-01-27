@@ -6,13 +6,7 @@
 class Parser {
 public:
 
-	static Parser& parserInstance() {
-		static Parser instance;
-		return instance;
-	}
-
-	ParsedCommand parsedCommand(const std::vector<std::string>& tokens);
-
+	static ParsedCommand parsedCommand(const std::vector<std::string>& tokens);
 
 private:
 

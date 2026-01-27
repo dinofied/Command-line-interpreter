@@ -13,6 +13,8 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 	std::ostream* output = &outputStream;
 	IOStreamInfo ioInfo = { input, output };
 
+
+	//semantic check
 	if (!Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo, streamManager)) {
 		return nullptr;
 	}
@@ -21,7 +23,7 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 	vector<string> commandArgs = std::vector<std::string>(parsedCommand.body.begin() + 1, parsedCommand.body.end());
 	RedirectionInfo redInfo = parsedCommand.redirection;
 
-
+	//checking for redirections and hooking them up
 	if (redInfo.inputFile != "") {
 		ioInfo.input = streamManager.createIOStream(redInfo.inputFile);
 	}
@@ -67,15 +69,9 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 
 	
 
-	nameDoesntExsist(commandName, commandArgs);
+	cout << "Unknown command: " << commandName << endl;
 	return nullptr;
 };
 
 
-void commandFactory::nameDoesntExsist(string commandName, vector<string> commandArgs) {
-
-	cout << "Unknown command: " << commandName << endl;
-	
-
-};
 
