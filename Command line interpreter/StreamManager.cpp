@@ -20,7 +20,7 @@ void StreamManager::deleteAllPointers() {
 
 fstream* StreamManager::createIOStream(string fileName) {
 	if (Command::isArgFile(fileName)) {
-		fstream* newStream = new fstream(fileName);
+		fstream* newStream = new fstream(fileName, std::ios::in | std::ios::out | std::ios::app);
 		if (!newStream->is_open()) {
 			delete newStream;
 			return nullptr;
