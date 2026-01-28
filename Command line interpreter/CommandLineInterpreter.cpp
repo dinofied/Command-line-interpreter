@@ -72,7 +72,10 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 
 		
 		streamManager.deleteAllPointers();
-		if (!inBatch) std::cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
+		if (!inBatch) {
+			std::cout << endl;
+			std::cout << '\n' << CommandLineInterpreter::terminalInstance().getReadySign();
+		}
 	}
 	
 }

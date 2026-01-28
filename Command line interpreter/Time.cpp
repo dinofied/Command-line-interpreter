@@ -5,13 +5,9 @@ void Time::runCommand() {
 	std::tm localTime{};
 	localtime_s(&localTime, &now);
 
+	//namesta da li ce fajl da se overwrituje ili appenduje
 	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
 	if (redInfo.outputFile != "") {
-		std::ifstream checkExistence(redInfo.outputFile);
-		if (!checkExistence) {
-			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
-			return;
-		}
 
 		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
 		if (redInfo.hasAppend) outputStream = &fs;
@@ -20,7 +16,7 @@ void Time::runCommand() {
 
 	*outputStream << twoDigits(localTime.tm_hour) << ":";
 	*outputStream << twoDigits(localTime.tm_min) << ":";
-	*outputStream << twoDigits(localTime.tm_sec) << '\n';
+	*outputStream << twoDigits(localTime.tm_sec);
 
 };
 

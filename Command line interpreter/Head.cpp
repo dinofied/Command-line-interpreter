@@ -7,11 +7,6 @@ void Head::runCommand() {
 	//namesta da li ce fajl da se overwrituje ili appenduje
 	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
 	if (redInfo.outputFile != "") {
-		std::ifstream checkExistence(redInfo.outputFile);
-		if (!checkExistence) {
-			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
-			return;
-		}
 
 		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
 		if (redInfo.hasAppend) outputStream = &fs;
@@ -25,10 +20,13 @@ void Head::runCommand() {
 		input.push_back(temp);
 	}
 
+	int counter = 0;
 	for (auto& token : input) {
 		if (lineCount > 0) {
+			if (counter != 0) *outputStream << endl;
 			*outputStream << token << endl;
 			lineCount--;
+			counter++;
 		}
 	}
 

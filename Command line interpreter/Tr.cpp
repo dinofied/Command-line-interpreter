@@ -5,11 +5,6 @@ void Tr::runCommand() {
 	//namesta da li ce fajl da se overwrituje ili appenduje
 	std::fstream fs(redInfo.outputFile, std::ios::out | std::ios::app);
 	if (redInfo.outputFile != "") {
-		std::ifstream checkExistence(redInfo.outputFile);
-		if (!checkExistence) {
-			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
-			return;
-		}
 
 		if (redInfo.hasOutput)std::ofstream file(redInfo.outputFile);
 		if (redInfo.hasAppend) outputStream = &fs;
@@ -21,16 +16,8 @@ void Tr::runCommand() {
 		*outputStream << editLine(Command::trimmedText(commandArgs[0]), commandArgs[1], with) << endl;
 		return;
 	}
-	if (Command::isArgFile(commandArgs[0])) {
-		std::ifstream test(commandArgs[0]);
-		if (!test) {
-			std::cout << "Fajl ne postoji:" << endl;
-			std::cout << commandArgs[0] << endl;
-			return;
-		}
-	}
 
-	//ucitava podatke u listu
+	//ucitava podatke u listu i obradjuje ih 
 	string temp;
 	vector<string> input;
 	while (getline(*inputStream, temp)) {
@@ -47,8 +34,12 @@ void Tr::runCommand() {
 		}
 		input.push_back(editLine(temp, what, with));
 	}
+
+	int counter = 0;
 	for (auto& token : input) {
-		*outputStream << token << endl;
+		if (counter != 0) *outputStream << endl;
+		*outputStream << token;
+		counter++;
 	}
 
 	cin.clear();
