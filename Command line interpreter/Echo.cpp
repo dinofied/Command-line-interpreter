@@ -32,8 +32,9 @@ void Echo::runCommand() {
 
 	int counter = 0;
 	for (auto &token : input) {
-		if (counter != 0) *outputStream << endl;
+		if ((redInfo.hasAppend || redInfo.hasOutput) && counter != 0) *outputStream << endl;
 		*outputStream << token;
+		if (!redInfo.hasAppend && !redInfo.hasOutput) *outputStream << endl;
 		counter++;
 	}
 

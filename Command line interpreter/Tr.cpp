@@ -37,8 +37,9 @@ void Tr::runCommand() {
 
 	int counter = 0;
 	for (auto& token : input) {
-		if (counter != 0) *outputStream << endl;
+		if ((redInfo.hasAppend || redInfo.hasOutput) && counter != 0) *outputStream << endl;
 		*outputStream << token;
+		if (!redInfo.hasAppend && !redInfo.hasOutput) *outputStream << endl;
 		counter++;
 	}
 
@@ -63,6 +64,8 @@ string Tr::editLine(string input, string what, string with) {
 		}
 		edited += input[i];
 	}
+
+	for (int i = input.size() - what.size() + 1; i < input.size(); i++) edited += input[i];
 
 	return edited;
 }

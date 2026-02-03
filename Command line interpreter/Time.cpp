@@ -17,6 +17,7 @@ void Time::runCommand() {
 	*outputStream << twoDigits(localTime.tm_hour) << ":";
 	*outputStream << twoDigits(localTime.tm_min) << ":";
 	*outputStream << twoDigits(localTime.tm_sec);
+	if (!redInfo.hasAppend && !redInfo.hasOutput) *outputStream << endl;
 
 };
 

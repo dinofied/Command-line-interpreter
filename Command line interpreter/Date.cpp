@@ -16,6 +16,7 @@ void Date::runCommand() {
     *outputStream << twoDigits(localTime.tm_mday) << '.';
     *outputStream << twoDigits(localTime.tm_mon + 1) << '.';
     *outputStream << (localTime.tm_year + 1900) << '.';
+    if (!redInfo.hasAppend && !redInfo.hasOutput) *outputStream << endl;
 }
 
 string Date::twoDigits(int i) {

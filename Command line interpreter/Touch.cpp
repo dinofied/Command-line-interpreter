@@ -4,7 +4,7 @@
 void Touch::runCommand() {
 	std::ifstream test(commandArgs[0]);
 	if (test) {
-		std::cout << "Fajl vec postoji:" << std::endl;
+		std::cout << "Fajl vec postoji:";
 		std::cout << commandName << " ";
 		for (int i = 0; i < commandArgs.size(); i++) {
 			std::cout << commandArgs[i];

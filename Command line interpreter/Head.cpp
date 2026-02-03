@@ -23,10 +23,11 @@ void Head::runCommand() {
 	int counter = 0;
 	for (auto& token : input) {
 		if (lineCount > 0) {
-			if (counter != 0) *outputStream << endl;
-			*outputStream << token << endl;
-			lineCount--;
+			if ((redInfo.hasAppend || redInfo.hasOutput) && counter != 0) *outputStream << endl;
+			*outputStream << token;
+			if (!redInfo.hasAppend && !redInfo.hasOutput) *outputStream << endl;
 			counter++;
+			lineCount--;
 		}
 	}
 
