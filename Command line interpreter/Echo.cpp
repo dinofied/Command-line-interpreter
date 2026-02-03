@@ -18,6 +18,7 @@ void Echo::runCommand() {
 	if (commandArgs.size()) {
 		if (Command::isArgText(commandArgs[0])) {
 			*outputStream << Command::trimmedText(commandArgs[0]);
+			if (!redInfo.hasAppend && !redInfo.hasOutput) *outputStream << endl;
 			return;
 		}
 	}

@@ -3,13 +3,14 @@
 
 //checks if the input argument is a file
 bool Command::isArgFile(string arg) {
-	int argSize = arg.size() - 1;
-	if (argSize < 4) return false;
+	
+	for (char c : arg) {
+		if (c == '.' || c == '-' || c == '_') continue;
+		if (c < 48 || (c > 57 && c < 65) || (c > 90 && c < 97) || c > 122) return false;
+	}
+	if (!arg.size()) return false;
 
-	string end = arg.substr(argSize - 3, argSize);
-	if (end == ".txt") return true;
-
-	return false;
+	return true;
 }
 
 //checks if the input argument is in quotes

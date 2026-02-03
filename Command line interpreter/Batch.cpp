@@ -3,7 +3,7 @@
 void Batch::runCommand() {
 
 
-	//slucaj gde je argument text + provera da li fajl postoji ako je argument fajl
+	//slucaj gde je argument text
 	if (commandArgs.size()) {
 		if (Command::isArgText(commandArgs[0])) {
 			cout << "Los unos za batch." << endl;

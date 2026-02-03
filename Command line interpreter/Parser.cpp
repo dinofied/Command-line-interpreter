@@ -31,7 +31,7 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 				return { {"error 5"} };
 			}
 			else result.redirection.hasOutput = true;
-			if (Command::isArgFile(tokens[i + 1])) {
+			if (Command::isArgFile(tokens[i + 1])) { 
 				result.redirection.outputFile = tokens[i + 1];
 				i++;
 			}
@@ -63,7 +63,6 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 
 		if (!inRedirects) result.body.push_back(tokens[i]);
 	}
-
 
 	return result;
 };

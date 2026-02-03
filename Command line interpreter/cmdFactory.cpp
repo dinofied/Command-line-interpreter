@@ -2,7 +2,7 @@
 
 
 
-Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeInfo, StreamManager& streamManager, std::ostream& outputStream) {
+Command* commandFactory::createCmd(ParsedCommand parsedCommand, PipeInfo pipeInfo, StreamManager& streamManager, std::ostream& outputStream) {
 	if (!parsedCommand.body.size()) {
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
@@ -26,10 +26,20 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand , PipeInfo pipeIn
 	//checking for redirections and hooking them up
 	if (redInfo.inputFile != "") {
 		ioInfo.input = streamManager.createIOStream(redInfo.inputFile);
+		if (ioInfo.input == nullptr) {
+			cout << "Fajl ne postoji: " << redInfo.inputFile << endl;
+			return nullptr;
+		}
 	}
 	if (redInfo.outputFile != "") {
 		ioInfo.output = streamManager.createIOStream(redInfo.outputFile);
+		if (ioInfo.output == nullptr) {
+			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
+			return nullptr;
+		}
 	}
+
+
 
 	
 	//silne nule su na mestu nekadasnjeg charCounta koji se trenutno ne koristi (error handling)
