@@ -24,6 +24,7 @@ public:
 	static string trimmedText(string arg);
 	virtual string getName();
 	virtual vector<string> getArgs();
+	string getErrInfo();
 	RedirectionInfo getRedirectionInfo();
 
 protected:
@@ -32,17 +33,15 @@ protected:
 	RedirectionInfo redInfo;
 	string commandName;
 	vector<string> commandArgs;
+	string errInfo;
 
-
-
-	Command(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) {
-		this->commandName = commandName;
-		this->commandArgs = commandArgs;
-		this->redInfo = redInfo;
-		this->inputStream = (iostream*)ioInfo.input;
-		this->outputStream = (iostream*)ioInfo.output;
+	Command(CommandInfo cmdInfo) {
+		this->commandName = cmdInfo.body[0];
+		this->commandArgs = std::vector<std::string>(cmdInfo.body.begin() + 1, cmdInfo.body.end());
+		this->redInfo = cmdInfo.redirection;
+		this->inputStream = (iostream*)cmdInfo.ioInfo.input;
+		this->outputStream = (iostream*)cmdInfo.ioInfo.output;
+		this->errInfo = cmdInfo.errInfo;
 	};
-
-
 };
 

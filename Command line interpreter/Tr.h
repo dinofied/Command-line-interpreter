@@ -3,7 +3,7 @@
 
 class Tr : public Command{
 public:
-	Tr(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Tr(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

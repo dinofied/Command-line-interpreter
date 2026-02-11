@@ -4,7 +4,7 @@
 
 class Truncate : public Command{
 public:
-	Truncate(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Truncate(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

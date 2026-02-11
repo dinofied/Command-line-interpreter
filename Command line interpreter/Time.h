@@ -4,7 +4,7 @@
 
 class Time : public Command {
 public:
-	Time(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Time(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

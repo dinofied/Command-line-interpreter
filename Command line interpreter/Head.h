@@ -4,7 +4,7 @@
 
 class Head : public Command{
 public:
-	Head(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Head(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

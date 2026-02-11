@@ -19,30 +19,19 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 			commands.push_back(commandFactory::createCmd(Parser::parsedCommand(Lexer::divideWords(pipes[i])), { i, pipes.size()}, streamManager, output));
 		}
 
-		//checking if the created command exists and checking its privelages based on the pipe its in
+		//checking if the created command exists 
 		bool hasError = false;
 		for (int i = 0; i < commands.size(); i++) {
 			if (commands[i] == nullptr) {
-				std::cout << "Sintaksna greska u pipu broj: " << i + 1 << endl;
 				hasError = true;
 				continue;
 			}
-
-			bool allowedInput = false, allowedOutput = false;
-			if (i == 0) allowedInput = true;
-			if (i == commands.size() - 1) allowedOutput = true;
-
-
-			if (allowedOutput == false && commands[i]->getRedirectionInfo().hasOutput) {
-				std::cout << "Izlaz se sme preusmeriti samo na poslednjoj komandi." << endl;
+			else if (commands[i]->getErrInfo() != "valid") {
+				if (!hasError) cout << "Errors:\n";
+				if (hasError) cout << "\n";
+				cout << "(PipeId: " << i << ") - " << commands[i]->getErrInfo();
 				hasError = true;
 			}
-
-			if (allowedInput == false && (commands[i]->getRedirectionInfo().hasInput || commands[i]->getRedirectionInfo().hasAppend)) {
-				std::cout << "Ulaz se sme preusmeriti samo na prvoj komandi." << endl;
-				hasError = true;
-			}
-			
 		}
 
 		if (!hasError) {
@@ -71,7 +60,6 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 		}
 
 		
-		streamManager.deleteAllPointers();
 		if (!inBatch) {
 			std::cout << endl;
 			std::cout << CommandLineInterpreter::terminalInstance().getReadySign();

@@ -51,6 +51,10 @@ vector<string> Command::getArgs() {
 	return commandArgs;
 }
 
+string Command::getErrInfo() {
+	return errInfo;
+}
+
 RedirectionInfo Command::getRedirectionInfo() {
 	return redInfo;
 };

@@ -4,7 +4,7 @@
 
 class Prompt : public Command {
 public:
-	Prompt(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Prompt(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

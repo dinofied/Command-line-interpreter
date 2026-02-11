@@ -3,7 +3,7 @@
 
 class Echo : public Command { 
 public:
-	Echo(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Echo(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

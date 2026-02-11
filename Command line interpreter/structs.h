@@ -25,3 +25,10 @@ struct IOStreamInfo {
 	std::istream* input;
 	std::ostream* output;
 };
+
+struct CommandInfo {
+	std::vector<std::string> body;
+	RedirectionInfo redirection;
+	IOStreamInfo ioInfo;
+	std::string errInfo;
+};

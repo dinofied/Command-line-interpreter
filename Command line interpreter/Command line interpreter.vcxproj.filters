@@ -126,6 +126,9 @@
     <ClCompile Include="Inspector.cpp">
       <Filter>Source Files\Inspector</Filter>
     </ClCompile>
+    <ClCompile Include="Error.cpp">
+      <Filter>Source Files\Commands.cpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Echo.h">
@@ -190,6 +193,9 @@
     </ClInclude>
     <ClInclude Include="Inspector.h">
       <Filter>Header Files\Inspector</Filter>
+    </ClInclude>
+    <ClInclude Include="Error.h">
+      <Filter>Header Files\Commands.h</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

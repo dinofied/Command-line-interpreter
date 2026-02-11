@@ -7,80 +7,77 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand, PipeInfo pipeInf
 		cout << "Nevalidan unos." << endl;
 		return nullptr;
 	}
-
-
+	
+	//hooking up default streams
 	std::istream* input = &std::cin;
 	std::ostream* output = &outputStream;
 	IOStreamInfo ioInfo = { input, output };
 
-
-	//semantic check
-	if (!Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo, streamManager)) {
+	//semantic check and error description
+	string errorText = Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo, streamManager);
+	if (errorText == "Null") {
+		cout << "(PipeId: " << pipeInfo.pipeId << ") - " << "Unknown command: " << parsedCommand.body[0] << endl;
 		return nullptr;
 	}
 
-	string commandName = parsedCommand.body[0];
-	vector<string> commandArgs = std::vector<std::string>(parsedCommand.body.begin() + 1, parsedCommand.body.end());
-	RedirectionInfo redInfo = parsedCommand.redirection;
-
 	//checking for redirections and hooking them up
-	if (redInfo.inputFile != "") {
-		ioInfo.input = streamManager.createIOStream(redInfo.inputFile);
+	if (parsedCommand.redirection.inputFile != "") {
+		ioInfo.input = streamManager.createIOStream(parsedCommand.redirection.inputFile);
 		if (ioInfo.input == nullptr) {
-			cout << "Fajl ne postoji: " << redInfo.inputFile << endl;
+			cout << "Fajl ne postoji: " << parsedCommand.redirection.inputFile << endl;
 			return nullptr;
 		}
 	}
-	if (redInfo.outputFile != "") {
-		ioInfo.output = streamManager.createIOStream(redInfo.outputFile);
+	if (parsedCommand.redirection.outputFile != "") {
+		ioInfo.output = streamManager.createIOStream(parsedCommand.redirection.outputFile);
 		if (ioInfo.output == nullptr) {
-			cout << "Fajl ne postoji: " << redInfo.outputFile << endl;
+			cout << "Fajl ne postoji: " << parsedCommand.redirection.outputFile << endl;
 			return nullptr;
 		}
 	}
 
+	//gathering command info
+	CommandInfo cmdInfo;
+	cmdInfo.body = parsedCommand.body;
+	cmdInfo.redirection = parsedCommand.redirection;
+	cmdInfo.ioInfo = ioInfo;
+	cmdInfo.errInfo = errorText;
 
 
-	
-	//silne nule su na mestu nekadasnjeg charCounta koji se trenutno ne koristi (error handling)
-	if (commandName == "echo") {
-		return (Echo*) new Echo(commandName, commandArgs, redInfo, ioInfo);
+	//command creation
+	if (parsedCommand.body[0] == "echo") {
+		return (Echo*) new Echo(cmdInfo);
 	}
-	if (commandName == "time") {
-		return (Time*) new Time(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "time") {
+		return (Time*) new Time(cmdInfo);
 	}
-	if (commandName == "date") {
-		return (Date*) new Date(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "date") {
+		return (Date*) new Date(cmdInfo);
 	}
-	if (commandName == "wc") {
-		return (wordCount*) new wordCount(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "wc") {
+		return (wordCount*) new wordCount(cmdInfo);
 	}
-	if (commandName == "touch") {
-		return (Touch*) new Touch(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "touch") {
+		return (Touch*) new Touch(cmdInfo);
 	}
-	if (commandName == "prompt") {
-		return (Prompt*) new Prompt(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "prompt") {
+		return (Prompt*) new Prompt(cmdInfo);
 	}
-	if (commandName == "batch") {
-		return (Batch*) new Batch(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "batch") {
+		return (Batch*) new Batch(cmdInfo);
 	}
-	if (commandName == "truncate") {
-		return (Truncate*) new Truncate(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "truncate") {
+		return (Truncate*) new Truncate(cmdInfo);
 	}
-	if (commandName == "rm") {
-		return (Rm*) new Rm(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "rm") {
+		return (Rm*) new Rm(cmdInfo);
 	}
-	if (commandName == "head") {
-		return (Head*) new Head(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "head") {
+		return (Head*) new Head(cmdInfo);
 	}
-	if (commandName == "tr") {
-		return (Tr*) new Tr(commandName, commandArgs, redInfo, ioInfo);
+	if (parsedCommand.body[0] == "tr") {
+		return (Tr*) new Tr(cmdInfo);
 	}
-
-	
-
-	cout << "Unknown command: " << commandName << endl;
-	return nullptr;
 };
 
 

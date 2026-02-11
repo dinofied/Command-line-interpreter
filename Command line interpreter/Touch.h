@@ -4,7 +4,7 @@
 
 class Touch : public Command{
 public:
-	Touch(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Touch(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

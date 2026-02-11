@@ -129,6 +129,7 @@
     <ClCompile Include="CommandLineInterpreter.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Echo.cpp" />
+    <ClCompile Include="Error.cpp" />
     <ClCompile Include="Head.cpp" />
     <ClCompile Include="Inspector.cpp" />
     <ClCompile Include="Lexer.cpp" />
@@ -152,6 +153,7 @@
     <ClInclude Include="CommandLineInterpreter.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Echo.h" />
+    <ClInclude Include="Error.h" />
     <ClInclude Include="Head.h" />
     <ClInclude Include="Inspector.h" />
     <ClInclude Include="Lexer.h" />

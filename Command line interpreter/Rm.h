@@ -5,7 +5,7 @@
 
 class Rm : public Command {
 public:
-	Rm(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Rm(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

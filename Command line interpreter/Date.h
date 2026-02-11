@@ -4,7 +4,7 @@
 
 class Date : public Command{
 public:
-	Date(string commandName, vector<string> commandArgs, RedirectionInfo redInfo, IOStreamInfo ioInfo) : Command(commandName, commandArgs, redInfo, ioInfo) {
+	Date(CommandInfo cmdInfo) : Command(cmdInfo) {
 
 	};
 

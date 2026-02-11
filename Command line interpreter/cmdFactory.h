@@ -14,6 +14,7 @@
 #include "Tr.h"
 #include "Command.h"
 #include "Inspector.h"
+#include "Error.h"
 
 using namespace std;
 class commandFactory {
