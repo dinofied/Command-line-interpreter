@@ -78,6 +78,9 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand, PipeInfo pipeInf
 	if (parsedCommand.body[0] == "tr") {
 		return (Tr*) new Tr(cmdInfo);
 	}
+	if (parsedCommand.body[0] == "error") {
+		return (Error*) new Error(cmdInfo);
+	}
 };
 
 

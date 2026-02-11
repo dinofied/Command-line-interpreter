@@ -8,10 +8,10 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 		if (tokens[i] == "<") {
 			inRedirects = true;
 			if (i == tokens.size() - 1 || tokens[i + 1] == "<" || tokens[i + 1] == ">" || tokens[i + 1] == ">>") {
-				return { {"error 1"} };
+				return { {"error", "Nedovoljno argumenata za redirekciju \"<\"."} };
 			}
 			if (result.redirection.hasInput == true) {
-				return { {"error 2"} };
+				return { {"error", "Visak redirekcija za unos."}};
 			}
 			else result.redirection.hasInput = true;
 			if (Command::isArgFile(tokens[i + 1])) {
@@ -19,16 +19,16 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 				i ++;
 			}	
 			else {
-				return { {"error 3"}};
+				return { {"error", "Nevalidan argument za redirekciju \"<\"."} };
 			}
 		}
 		else if (tokens[i] == ">") {
 			inRedirects = true;
 			if (i == tokens.size() - 1 || tokens[i + 1] == "<" || tokens[i + 1] == ">" || tokens[i + 1] == ">>") {
-				return { {"error 4"} };
+				return { {"error", "Nedovoljno argumenata za redirekciju \">\"."} };
 			}
 			if (result.redirection.hasOutput == true || result.redirection.hasAppend == true) {
-				return { {"error 5"} };
+				return { {"error", "Visak redirekcija za ispis."} };
 			}
 			else result.redirection.hasOutput = true;
 			if (Command::isArgFile(tokens[i + 1])) { 
@@ -36,16 +36,16 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 				i++;
 			}
 			else {
-				return { {"error 6"} };
+				return { {"error", "Nevalidan argument za redirekciju \">\"."} };
 			}
 		}
 		else if (tokens[i] == ">>") {
 			inRedirects = true;
 			if (i == tokens.size() - 1 || tokens[i + 1] == "<" || tokens[i + 1] == ">" || tokens[i + 1] == ">>") {
-				return { {"error 7"} };
+				return { {"error", "Nedovoljno argumenata za redirekciju \">>\"."} };
 			}
 			if (result.redirection.hasOutput == true || result.redirection.hasAppend == true) {
-				return { {"error 8"} };
+				return { {"error", "Nedovoljno argumenata za redirekciju \">>\"."} };
 			}
 			else result.redirection.hasAppend = true;
 			if (Command::isArgFile(tokens[i + 1])) {
@@ -53,10 +53,10 @@ ParsedCommand Parser::parsedCommand(const std::vector<std::string>& tokens) {
 				i++;
 			}
 			else {
-				return { {"error 9"} };
+				return { {"error", "Nevalidan argument za redirekciju \">>\"."} };
 			}
 		} else if (inRedirects) {
-			return { {"error 10"} };
+			return { {"error", "Previse argumenata uneto nakon ulaska u redirekciju."}};
 		}
 		
 

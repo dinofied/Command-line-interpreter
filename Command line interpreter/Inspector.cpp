@@ -156,6 +156,11 @@ string Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioIn
 
 	}
 
+	else if (token == "error") {
+		token = getNextToken(parsedCommand.body, it++);
+		if (token == "") return "Null";
+		return token;
+	}
 	else return "Null";
 
 }

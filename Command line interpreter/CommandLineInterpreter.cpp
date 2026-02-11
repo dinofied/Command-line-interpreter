@@ -19,7 +19,7 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 			commands.push_back(commandFactory::createCmd(Parser::parsedCommand(Lexer::divideWords(pipes[i])), { i, pipes.size()}, streamManager, output));
 		}
 
-		//checking if the created command exists 
+		//checking if the created commands have an error, if so report and dont execute 
 		bool hasError = false;
 		for (int i = 0; i < commands.size(); i++) {
 			if (commands[i] == nullptr) {
@@ -33,7 +33,9 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 				hasError = true;
 			}
 		}
+		if (hasError) cout << '\n';
 
+		//creating sstreams for pipes hookups if no errors found
 		if (!hasError) {
 			vector<stringstream*> pipeStreams;
 
@@ -51,6 +53,7 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 			}
 		}
 
+		//executes the commands (if no error found) and deletes them
 		for (size_t i = 0; i < commands.size(); i++) {
 			if (!hasError) {
 				commands[i]->runCommand();
@@ -59,7 +62,7 @@ void CommandLineInterpreter::run(std::istream& input, std::ostream& output, bool
 			delete commands[i];
 		}
 
-		
+		//checking for poper batch output
 		if (!inBatch) {
 			std::cout << endl;
 			std::cout << CommandLineInterpreter::terminalInstance().getReadySign();
