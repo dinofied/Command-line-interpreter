@@ -14,7 +14,7 @@ string Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioIn
 	int it = 0;
 	string token = getNextToken(parsedCommand.body, it++);
 
-	//pipe redirection validation for redirections
+	//pipe redirection validation
 	bool allowedInput = false, allowedOutput = false;
 	if (pipeInfo.pipeId == 0) allowedInput = true;
 	if (pipeInfo.pipeId == pipeInfo.pipeCount - 1) allowedOutput = true;
@@ -26,7 +26,7 @@ string Inspector::isValidSyntax(ParsedCommand& parsedCommand, IOStreamInfo& ioIn
 		return "Ulaz se sme preusmeriti samo na prvoj komandi.";
 	}
 
-	//semantic validation
+	//semantic, command specific validation
 	if (token == "echo") {
 		if (parsedCommand.body.size() > 2) return "Previse argumenata.";
 		token = getNextToken(parsedCommand.body, it++);

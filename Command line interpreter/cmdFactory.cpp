@@ -16,7 +16,7 @@ Command* commandFactory::createCmd(ParsedCommand parsedCommand, PipeInfo pipeInf
 	//semantic check and error description
 	string errorText = Inspector::isValidSyntax(parsedCommand, ioInfo, pipeInfo, streamManager);
 	if (errorText == "Null") {
-		cout << "(PipeId: " << pipeInfo.pipeId << ") - " << "Unknown command: " << parsedCommand.body[0] << endl;
+		cout << "(PipeId: " << pipeInfo.pipeId << ") - " << "Unknown command: " << parsedCommand.body[0];
 		return nullptr;
 	}
 

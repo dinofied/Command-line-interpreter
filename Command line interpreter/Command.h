@@ -18,22 +18,30 @@ public:
 	void switchInputStream(iostream* newInput);
 	void switchOutputStream(iostream* newOutput);
 
-	//helper functions
+	//generic helper functions
 	static bool isArgFile(string arg);
 	static bool isArgText(string arg);
 	static string trimmedText(string arg);
+
+	//commands specific helper functions
 	virtual string getName();
 	virtual vector<string> getArgs();
 	string getErrInfo();
 	RedirectionInfo getRedirectionInfo();
 
 protected:
+	//io info
 	iostream* inputStream;
 	iostream* outputStream;
 	RedirectionInfo redInfo;
+
+	//command body info
 	string commandName;
 	vector<string> commandArgs;
+
+	//err info
 	string errInfo;
+
 
 	Command(CommandInfo cmdInfo) {
 		this->commandName = cmdInfo.body[0];

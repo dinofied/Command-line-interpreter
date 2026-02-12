@@ -18,7 +18,6 @@ void Batch::runCommand() {
 		}
 	}
 	 
-	
 	CommandLineInterpreter::terminalInstance().run(*inputStream, *outputStream, true);
 
 	cin.clear();
