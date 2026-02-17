@@ -1,0 +1,7 @@
+echo "Solaja"
+echo s"Solaja"
+echo "solaja
+echo 
+echo "solaja" a
+echo sdsd sds
+dssd
